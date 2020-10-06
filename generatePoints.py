@@ -2,6 +2,7 @@ import sklearn.datasets as datasets
 import pandas as pd
 import numpy as np
 import os
+import csv
 
 points = 100
 n_features = 3
@@ -32,17 +33,18 @@ def saveData(data, dest_dir):
     :return:
     """
     # save dataset to file
-    np.save(dest_dir, data)
+    # np.save(dest_dir, data)
+    np.savetxt(dest_dir + ".csv", data, delimiter=",")
 
 
-def loadData(source_dir):
-    """
-    Load dataset from file
-    :param source_dir: directory where to load data
-    :return: loaded dataset
-    """
-    d = np.load(source_dir + '.npy')
-    return d
+# def loadData(source_dir):
+#     """
+#     Load dataset from file
+#     :param source_dir: directory where to load data
+#     :return: loaded dataset
+#     """
+#     d = np.load(source_dir + '.npy')
+#     return d
 
 
 def plotData(data, c='blue'):
