@@ -8,7 +8,7 @@ points = 100
 n_features = 3
 centers = 2
 std = 0.5
-datasets_dir = 'dataset'
+datasets_dir = 'datasets'
 
 
 def generateData(n_points, n_features, n_clusters, std):
@@ -82,8 +82,8 @@ output_dir = os.path.join(datasets_dir, str(len(data)))
 
 saveData(data, output_dir)
 
-cc = loadData(output_dir)
-print(len(cc))
+#cc = loadData(output_dir)
+#print(len(cc))
 
-plotData(cc)
+#plotData(cc)
 
