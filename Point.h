@@ -6,27 +6,29 @@
 #define MEAN_SHIFT_POINT_H
 
 
+#include <vector>
+
 class Point {
 public:
-    Point(float x, float y, float z);
-//    define copy constructor to duplicate points
-    Point( const Point &obj);
-    float getX() const;
+    explicit Point(const std::vector<float> &values);
 
-    void setX(float x);
+////    define copy constructor to duplicate points
+//    Point( const Point &obj);
 
-    float getY() const;
-
-    void setY(float y);
-
-    float getZ() const;
-
-    void setZ(float z);
 
 private:
-    float x = 0;
-    float y = 0;
-    float z = 0;
+public:
+    const std::vector<float> &getValues() const;
+
+    void setValues(const std::vector<float> &values);
+
+    int getDim() const;
+
+    void setDim(int dim);
+
+private:
+    std::vector<float> values;
+    int dim;
 
 };
 

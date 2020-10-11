@@ -4,14 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Cluster.cpp" "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/Cluster.cpp.o"
-  "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.cpp" "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/Point.cpp.o"
-  "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Utils.cpp" "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/Utils.cpp.o"
-  "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/genPoints.cpp" "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/genPoints.cpp.o"
-  "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/main.cpp" "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/main.cpp.o"
-  "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/meanShift.cpp" "/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/meanShift.cpp.o"
+  "/home/francesca/CLionProjects/Mean_Shift/Cluster.cpp" "/home/francesca/CLionProjects/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/Cluster.cpp.o"
+  "/home/francesca/CLionProjects/Mean_Shift/MeanShift.cpp" "/home/francesca/CLionProjects/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/MeanShift.cpp.o"
+  "/home/francesca/CLionProjects/Mean_Shift/MeanShiftUtils.cpp" "/home/francesca/CLionProjects/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.o"
+  "/home/francesca/CLionProjects/Mean_Shift/Point.cpp" "/home/francesca/CLionProjects/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/Point.cpp.o"
+  "/home/francesca/CLionProjects/Mean_Shift/Utils.cpp" "/home/francesca/CLionProjects/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/Utils.cpp.o"
+  "/home/francesca/CLionProjects/Mean_Shift/genPoints.cpp" "/home/francesca/CLionProjects/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/genPoints.cpp.o"
+  "/home/francesca/CLionProjects/Mean_Shift/main.cpp" "/home/francesca/CLionProjects/Mean_Shift/cmake-build-debug/CMakeFiles/Mean_Shift.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

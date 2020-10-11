@@ -6,59 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Cluster.cpp
-Cluster.h
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Cluster.h
-
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Cluster.h
+/home/francesca/CLionProjects/Mean_Shift/MeanShift.h
 vector
 -
 Point.h
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
+/home/francesca/CLionProjects/Mean_Shift/Point.h
 
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.cpp
-Point.h
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
-iostream
--
+/home/francesca/CLionProjects/Mean_Shift/Point.h
 
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
-
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Utils.cpp
-string
--
-fstream
--
-vector
--
-utility
--
-stdexcept
--
-sstream
--
-Point.h
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
-
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/genPoints.cpp
-iostream
--
-iomanip
--
-string
--
-map
--
-random
--
-cmath
--
-
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/main.cpp
+/home/francesca/CLionProjects/Mean_Shift/main.cpp
 iostream
 -
 vector
 -
 Point.h
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
+/home/francesca/CLionProjects/Mean_Shift/Point.h
+MeanShift.h
+/home/francesca/CLionProjects/Mean_Shift/MeanShift.h
 

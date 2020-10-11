@@ -6,37 +6,32 @@
 #include <iostream>
 using namespace std;
 
-Point::Point(float x, float y, float z) : x(x), y(y), z(z) {}
 
-float Point::getX() const {
-    return x;
+//Point::Point(const Point &obj) {
+////    Copy constructor
+//    Point::x = obj.x;
+//    Point::y = obj.y;
+//    Point::z = obj.z;
+//
+//
+//}
+
+Point::Point(const vector<float> &values) : values(values) {
+    this->dim = this->values.size();
 }
 
-void Point::setX(float x) {
-    Point::x = x;
+const vector<float> &Point::getValues() const {
+    return values;
 }
 
-Point::Point(const Point &obj) {
-//    Copy constructor
-    Point::x = obj.x;
-    Point::y = obj.y;
-    Point::z = obj.z;
-
-
+void Point::setValues(const vector<float> &values) {
+    Point::values = values;
 }
 
-float Point::getY() const {
-    return y;
+int Point::getDim() const {
+    return dim;
 }
 
-void Point::setY(float y) {
-    Point::y = y;
-}
-
-float Point::getZ() const {
-    return z;
-}
-
-void Point::setZ(float z) {
-    Point::z = z;
+void Point::setDim(int dim) {
+    Point::dim = dim;
 }

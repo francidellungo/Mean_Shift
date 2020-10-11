@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Mean_Shift.dir/Cluster.cpp.o"
+  "CMakeFiles/Mean_Shift.dir/MeanShift.cpp.o"
+  "CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.o"
   "CMakeFiles/Mean_Shift.dir/Point.cpp.o"
   "CMakeFiles/Mean_Shift.dir/Utils.cpp.o"
   "CMakeFiles/Mean_Shift.dir/genPoints.cpp.o"

@@ -68,7 +68,6 @@
 
 #include <string>
 #include <fstream>
-#include <iostream>
 #include <vector>
 #include <utility> // std::pair
 #include <stdexcept> // std::runtime_error
@@ -123,7 +122,7 @@ std::vector<Point> read_csv(std::string filename){
         while(ss >> val){
 
             // Add the current integer to the 'colIdx' column's values vector
-            result.at(colIdx).second.push_back(val);
+//            result.push_back(val);
 
             // If the next token is a comma, ignore it and move on
             if(ss.peek() == ',') ss.ignore();
@@ -139,46 +138,10 @@ std::vector<Point> read_csv(std::string filename){
     return result;
 }
 
-std::vector<Point> getPointsFromCsv(std::string fileName)
-{
-    std::vector<Point> points;
-
-    std::ifstream data(fileName);
-    std::string line;
-    while (std::getline(data, line)) {
-        std::stringstream lineStream(line);
-        std::string cell;
-        std::vector<float> point;
-        while (std::getline(lineStream, cell, ','))
-            point.push_back(stod(cell));
-        points.emplace_back(Point(point));
-    }
-
-    return points;
-}
-
-void writeClustersToCsv(std::vector<Cluster> &clusters, std::string fileName)
-{
-    std::ofstream outputFile(fileName + ".csv");
-    int clusterId = 0;
-    for (auto &cluster : clusters) {
-        for (auto &point : cluster) {
-            for (auto &value : point) {
-                outputFile << value << ",";
-            }
-            outputFile << clusterId << "\n";
-        }
-        ++clusterId;
-    }
-}
-
-
-int main() {
+int main__() {
     // Read three_cols.csv and ones.csv
-    //std::vector<std::pair<std::string, std::vector<int>>> three_cols = read_csv("three_cols.csv");
-    //std::vector<std::pair<std::string, std::vector<int>>> ones = read_csv("ones.csv");
-
-    std::cout << getPointsFromCsv()
+    std::vector<Point> three_cols = read_csv("three_cols.csv");
+    std::vector<Point> ones = read_csv("ones.csv");
 
     return 0;
 }
