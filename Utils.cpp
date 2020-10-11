@@ -122,7 +122,7 @@ std::vector<Point> read_csv(std::string filename){
         while(ss >> val){
 
             // Add the current integer to the 'colIdx' column's values vector
-            result.at(colIdx).second.push_back(val);
+//            result.push_back(val);
 
             // If the next token is a comma, ignore it and move on
             if(ss.peek() == ',') ss.ignore();
@@ -138,10 +138,10 @@ std::vector<Point> read_csv(std::string filename){
     return result;
 }
 
-int main() {
+int main__() {
     // Read three_cols.csv and ones.csv
-    std::vector<std::pair<std::string, std::vector<int>>> three_cols = read_csv("three_cols.csv");
-    std::vector<std::pair<std::string, std::vector<int>>> ones = read_csv("ones.csv");
+    std::vector<Point> three_cols = read_csv("three_cols.csv");
+    std::vector<Point> ones = read_csv("ones.csv");
 
     return 0;
 }

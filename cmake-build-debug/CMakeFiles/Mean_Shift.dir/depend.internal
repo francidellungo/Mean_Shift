@@ -5,11 +5,18 @@ CMakeFiles/Mean_Shift.dir/Cluster.cpp.o
  /home/francesca/CLionProjects/Mean_Shift/Cluster.cpp
  /home/francesca/CLionProjects/Mean_Shift/Cluster.h
  /home/francesca/CLionProjects/Mean_Shift/Point.h
+CMakeFiles/Mean_Shift.dir/MeanShift.cpp.o
+ /home/francesca/CLionProjects/Mean_Shift/MeanShift.cpp
+ /home/francesca/CLionProjects/Mean_Shift/Point.h
 CMakeFiles/Mean_Shift.dir/Point.cpp.o
  /home/francesca/CLionProjects/Mean_Shift/Point.cpp
  /home/francesca/CLionProjects/Mean_Shift/Point.h
+CMakeFiles/Mean_Shift.dir/Utils.cpp.o
+ /home/francesca/CLionProjects/Mean_Shift/Point.h
+ /home/francesca/CLionProjects/Mean_Shift/Utils.cpp
 CMakeFiles/Mean_Shift.dir/genPoints.cpp.o
  /home/francesca/CLionProjects/Mean_Shift/genPoints.cpp
 CMakeFiles/Mean_Shift.dir/main.cpp.o
+ /home/francesca/CLionProjects/Mean_Shift/MeanShift.h
  /home/francesca/CLionProjects/Mean_Shift/Point.h
  /home/francesca/CLionProjects/Mean_Shift/main.cpp

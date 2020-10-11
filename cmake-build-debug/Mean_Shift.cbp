@@ -90,6 +90,18 @@
 		<Unit filename="/home/francesca/CLionProjects/Mean_Shift/Cluster.h">
 			<Option target="Mean_Shift"/>
 		</Unit>
+		<Unit filename="/home/francesca/CLionProjects/Mean_Shift/MeanShift.cpp">
+			<Option target="Mean_Shift"/>
+		</Unit>
+		<Unit filename="/home/francesca/CLionProjects/Mean_Shift/MeanShift.h">
+			<Option target="Mean_Shift"/>
+		</Unit>
+		<Unit filename="/home/francesca/CLionProjects/Mean_Shift/MeanShiftUtils.cpp">
+			<Option target="Mean_Shift"/>
+		</Unit>
+		<Unit filename="/home/francesca/CLionProjects/Mean_Shift/MeanShiftUtils.h">
+			<Option target="Mean_Shift"/>
+		</Unit>
 		<Unit filename="/home/francesca/CLionProjects/Mean_Shift/Point.cpp">
 			<Option target="Mean_Shift"/>
 		</Unit>

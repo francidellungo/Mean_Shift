@@ -150,6 +150,60 @@ Cluster.cpp.s:
 	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/Cluster.cpp.s
 .PHONY : Cluster.cpp.s
 
+MeanShift.o: MeanShift.cpp.o
+
+.PHONY : MeanShift.o
+
+# target to build an object file
+MeanShift.cpp.o:
+	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.o
+.PHONY : MeanShift.cpp.o
+
+MeanShift.i: MeanShift.cpp.i
+
+.PHONY : MeanShift.i
+
+# target to preprocess a source file
+MeanShift.cpp.i:
+	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.i
+.PHONY : MeanShift.cpp.i
+
+MeanShift.s: MeanShift.cpp.s
+
+.PHONY : MeanShift.s
+
+# target to generate assembly for a file
+MeanShift.cpp.s:
+	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.s
+.PHONY : MeanShift.cpp.s
+
+MeanShiftUtils.o: MeanShiftUtils.cpp.o
+
+.PHONY : MeanShiftUtils.o
+
+# target to build an object file
+MeanShiftUtils.cpp.o:
+	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.o
+.PHONY : MeanShiftUtils.cpp.o
+
+MeanShiftUtils.i: MeanShiftUtils.cpp.i
+
+.PHONY : MeanShiftUtils.i
+
+# target to preprocess a source file
+MeanShiftUtils.cpp.i:
+	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.i
+.PHONY : MeanShiftUtils.cpp.i
+
+MeanShiftUtils.s: MeanShiftUtils.cpp.s
+
+.PHONY : MeanShiftUtils.s
+
+# target to generate assembly for a file
+MeanShiftUtils.cpp.s:
+	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.s
+.PHONY : MeanShiftUtils.cpp.s
+
 Point.o: Point.cpp.o
 
 .PHONY : Point.o
@@ -270,6 +324,12 @@ help:
 	@echo "... Cluster.o"
 	@echo "... Cluster.i"
 	@echo "... Cluster.s"
+	@echo "... MeanShift.o"
+	@echo "... MeanShift.i"
+	@echo "... MeanShift.s"
+	@echo "... MeanShiftUtils.o"
+	@echo "... MeanShiftUtils.i"
+	@echo "... MeanShiftUtils.s"
 	@echo "... Point.o"
 	@echo "... Point.i"
 	@echo "... Point.s"
