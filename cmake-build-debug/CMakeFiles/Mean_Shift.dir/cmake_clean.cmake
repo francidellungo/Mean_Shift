@@ -6,7 +6,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Mean_Shift.dir/Utils.cpp.o"
   "CMakeFiles/Mean_Shift.dir/genPoints.cpp.o"
   "CMakeFiles/Mean_Shift.dir/main.cpp.o"
-  "CMakeFiles/Mean_Shift.dir/meanShift.cpp.o"
   "Mean_Shift"
   "Mean_Shift.pdb"
 )

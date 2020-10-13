@@ -6,21 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/francesca/CLionProjects/Mean_Shift/MeanShift.h
+/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
 vector
 -
-Point.h
-/home/francesca/CLionProjects/Mean_Shift/Point.h
 
-/home/francesca/CLionProjects/Mean_Shift/Point.h
-
-/home/francesca/CLionProjects/Mean_Shift/main.cpp
+/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/main.cpp
 iostream
 -
 vector
 -
 Point.h
-/home/francesca/CLionProjects/Mean_Shift/Point.h
-MeanShift.h
-/home/francesca/CLionProjects/Mean_Shift/MeanShift.h
+/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
 

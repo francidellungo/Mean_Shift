@@ -7,7 +7,7 @@
 #include "Point.h"
 //#include "Cluster.h"
 
-int main(){
+int main_(){
     Point* p = new Point(2,2,3);
 
     std::cout << p->getX() << '\n';

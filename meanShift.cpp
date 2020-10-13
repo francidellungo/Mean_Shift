@@ -1,53 +1,37 @@
 //
-// Created by Matteo Petrone on 11/10/2020.
+// Created by francesca on 06/10/20.
 //
 
-#include "meanShift.h"
 #include <vector>
 #include <iostream>
-#include <cmath>
-
 #include "Point.h"
-#include "Cluster.h"
-#include "ClustersBuilder.h"
-#include "meanShift.h"
+#include "MeanShift.h"
+#include "MeanShiftUtils.h"
 
+Point MeanShift::updatePoint(Point &point, const std::vector<Point> &original_points){
+    this->bandwidth;
+//    TODO to be finished
+    float distance = computeDistance()
+//            TODO ...
 
-std::vector<Cluster> meanShift(const std::vector<Point> &points, float bandwidth) {
-    ClustersBuilder builder = ClustersBuilder(points, 0.4);
-    long iterations = 0;
-    unsigned long dimensions = points[0].dimensions();
-    float radius = bandwidth * 3;
-    float doubledSquaredBandwidth = 2 * bandwidth * bandwidth;
-    while (!builder.allPointsHaveStoppedShifting() && iterations < MAX_ITERATIONS) {
+    return point;
+};
 
-#pragma omp parallel for default(none) \
-shared(points, dimensions, builder, bandwidth, radius, doubledSquaredBandwidth) \
-schedule(dynamic)
+std::vector<Point> MeanShift::doMeanShift(const std::vector<Point> &points){
+    std::cout << "Mean Shift function" << '\n';
+    std::vector<Point> copied_points = points;
 
-        for (long i = 0; i < points.size(); ++i) {
-            if (builder.hasStoppedShifting(i))
-                continue;
+    int n_iter = 100; //number of iterations to do
 
-            Point newPosition(dimensions);
-            Point pointToShift = builder.getShiftedPoint(i);
-            float totalWeight = 0.0;
-            for (auto &point : points) {
-                float distance = pointToShift.euclideanDistance(point);
-                if (distance <= radius) {
-                    float gaussian = std::exp(-(distance * distance) / doubledSquaredBandwidth);
-                    newPosition += point * gaussian;
-                    totalWeight += gaussian;
-                }
-            }
+    for(int i=0; i<n_iter; i++){
+//        for(auto it = copied_points.begin(); it!=copied_points.end(); ++it){
 
-            // the new position of the point is the weighted average of its neighbors
-            newPosition /= totalWeight;
-            builder.shiftPoint(i, newPosition);
+//      iterate over points
+        for(auto& cp: copied_points){
+            cp = updatePoint(cp, points);
+
         }
-        ++iterations;
+
     }
-    if (iterations == MAX_ITERATIONS)
-        std::cout << "WARNING: reached the maximum number of iterations" << std::endl;
-    return builder.buildClusters();
+    return points;
 }

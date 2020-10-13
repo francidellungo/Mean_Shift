@@ -176,7 +176,7 @@ MeanShift.o: MeanShift.cpp.o
 
 # target to build an object file
 MeanShift.cpp.o:
-	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.o
 .PHONY : MeanShift.cpp.o
 
 MeanShift.i: MeanShift.cpp.i
@@ -185,7 +185,7 @@ MeanShift.i: MeanShift.cpp.i
 
 # target to preprocess a source file
 MeanShift.cpp.i:
-	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.i
 .PHONY : MeanShift.cpp.i
 
 MeanShift.s: MeanShift.cpp.s
@@ -194,7 +194,7 @@ MeanShift.s: MeanShift.cpp.s
 
 # target to generate assembly for a file
 MeanShift.cpp.s:
-	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShift.cpp.s
 .PHONY : MeanShift.cpp.s
 
 MeanShiftUtils.o: MeanShiftUtils.cpp.o
@@ -203,7 +203,7 @@ MeanShiftUtils.o: MeanShiftUtils.cpp.o
 
 # target to build an object file
 MeanShiftUtils.cpp.o:
-	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.o
 .PHONY : MeanShiftUtils.cpp.o
 
 MeanShiftUtils.i: MeanShiftUtils.cpp.i
@@ -212,7 +212,7 @@ MeanShiftUtils.i: MeanShiftUtils.cpp.i
 
 # target to preprocess a source file
 MeanShiftUtils.cpp.i:
-	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.i
 .PHONY : MeanShiftUtils.cpp.i
 
 MeanShiftUtils.s: MeanShiftUtils.cpp.s
@@ -221,7 +221,7 @@ MeanShiftUtils.s: MeanShiftUtils.cpp.s
 
 # target to generate assembly for a file
 MeanShiftUtils.cpp.s:
-	$(MAKE) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/MeanShiftUtils.cpp.s
 .PHONY : MeanShiftUtils.cpp.s
 
 Point.o: Point.cpp.o
@@ -332,33 +332,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-meanShift.o: meanShift.cpp.o
-
-.PHONY : meanShift.o
-
-# target to build an object file
-meanShift.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/meanShift.cpp.o
-.PHONY : meanShift.cpp.o
-
-meanShift.i: meanShift.cpp.i
-
-.PHONY : meanShift.i
-
-# target to preprocess a source file
-meanShift.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/meanShift.cpp.i
-.PHONY : meanShift.cpp.i
-
-meanShift.s: meanShift.cpp.s
-
-.PHONY : meanShift.s
-
-# target to generate assembly for a file
-meanShift.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mean_Shift.dir/build.make CMakeFiles/Mean_Shift.dir/meanShift.cpp.s
-.PHONY : meanShift.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -389,9 +362,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... meanShift.o"
-	@echo "... meanShift.i"
-	@echo "... meanShift.s"
 .PHONY : help
 
 
