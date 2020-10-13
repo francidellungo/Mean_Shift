@@ -16,7 +16,6 @@ public:
 //    Point( const Point &obj);
 
 
-private:
 public:
     const std::vector<float> &getValues() const;
 

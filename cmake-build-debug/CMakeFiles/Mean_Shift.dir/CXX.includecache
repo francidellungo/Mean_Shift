@@ -6,21 +6,33 @@
 
 #IncludeRegexTransform: 
 
-/home/francesca/CLionProjects/Mean_Shift/MeanShift.h
+/home/francesca/CLionProjects/Mean_Shift/MeanShift.cpp
 vector
 -
-Point.h
-/home/francesca/CLionProjects/Mean_Shift/Point.h
-
-/home/francesca/CLionProjects/Mean_Shift/Point.h
-
-/home/francesca/CLionProjects/Mean_Shift/main.cpp
 iostream
 -
-vector
+functional
+-
+algorithm
 -
 Point.h
 /home/francesca/CLionProjects/Mean_Shift/Point.h
 MeanShift.h
 /home/francesca/CLionProjects/Mean_Shift/MeanShift.h
+MeanShiftUtils.h
+/home/francesca/CLionProjects/Mean_Shift/MeanShiftUtils.h
+
+/home/francesca/CLionProjects/Mean_Shift/MeanShift.h
+vector
+-
+Point.h
+/home/francesca/CLionProjects/Mean_Shift/Point.h
+
+/home/francesca/CLionProjects/Mean_Shift/MeanShiftUtils.h
+Point.h
+/home/francesca/CLionProjects/Mean_Shift/Point.h
+
+/home/francesca/CLionProjects/Mean_Shift/Point.h
+vector
+-
 

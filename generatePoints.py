@@ -82,8 +82,8 @@ output_dir = os.path.join(datasets_dir, str(len(data)))
 
 saveData(data, output_dir)
 
-cc = loadData(output_dir)
-print(len(cc))
-
-plotData(cc)
+# cc = loadData(output_dir)
+# print(len(cc))
+#
+# plotData(cc)
 

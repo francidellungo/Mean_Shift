@@ -10,13 +10,13 @@
 
 class Cluster {
 
-public:
-    Cluster(const std::vector<Point> &originalPoints, Point center);
-
-private:
-    Point center;
-    std::vector<Point> original_points;
-    std::vector<Point> copied_points;
+//public:
+//    Cluster(const std::vector<Point> &originalPoints, Point center);
+//
+//private:
+//    Point center;
+//    std::vector<Point> original_points;
+//    std::vector<Point> copied_points;
 };
 
 
