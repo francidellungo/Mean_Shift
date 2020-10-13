@@ -10,7 +10,7 @@
 #include <cmath>
 
 
-int main_()
+int main2()
 {
     std::random_device rd{};
     std::mt19937 gen{rd()};

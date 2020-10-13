@@ -22,6 +22,7 @@ CMakeFiles/Mean_Shift.dir/Utils.cpp.o: ../Utils.cpp
 
 CMakeFiles/Mean_Shift.dir/genPoints.cpp.o: ../genPoints.cpp
 
+CMakeFiles/Mean_Shift.dir/main.cpp.o: ../MeanShift.h
 CMakeFiles/Mean_Shift.dir/main.cpp.o: ../Point.h
 CMakeFiles/Mean_Shift.dir/main.cpp.o: ../main.cpp
 

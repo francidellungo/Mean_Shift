@@ -178,7 +178,7 @@ int main() {
     //std::vector<Point> three_cols = read_csv("three_cols.csv");
     //std::vector<Point> ones = read_csv("ones.csv");
 
-    std::vector<Point> points = getPointsFromCsv("datasets/100.csv");
+   std::vector<Point> points = getPointsFromCsv("datasets/100.csv");
 
     return 0;
 }

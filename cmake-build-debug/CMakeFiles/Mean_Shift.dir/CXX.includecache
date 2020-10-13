@@ -6,17 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Cluster.cpp
-Cluster.h
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Cluster.h
-
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Cluster.h
+/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
 vector
+-
+
+/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Utils.cpp
+string
+-
+fstream
+-
+iostream
+-
+vector
+-
+utility
+-
+stdexcept
+-
+sstream
 -
 Point.h
 /Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
-
-/Users/matteo/Library/Mobile Documents/com~apple~CloudDocs/Università/Magistrale/Parallel Computing/Mean_Shift/Point.h
-vector
--
 
