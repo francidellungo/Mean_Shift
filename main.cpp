@@ -8,9 +8,10 @@
 //#include "Cluster.h"
 
 int main_(){
-    Point* p = new Point(2,2,3);
+    //Point* p = new Point(2,2,3);
+    auto* p1 = new Point(std::vector<float> { 1, 2, 3 });
 
-    std::cout << p->getX() << '\n';
+    std::cout << p1->getX() << '\n';
 
     std::vector<int> v = {7, 5, 16, 8};
     std::vector<int> aa = v;
@@ -19,7 +20,7 @@ int main_(){
         std::cout << ' ' << it;
 
     std::vector<Point> points;
-    points.push_back(*p);
+    points.push_back(*p1);
 
 
     return 0;
