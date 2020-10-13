@@ -18,7 +18,7 @@ public:
         }
     }
     std::vector<Point> doMeanShift(const std::vector<Point> &points);
-    Point updatePoint(Point &point, const std::vector<Point> &original_points);
+    Point updatePoint(Point &point, const std::vector<Point> &original_points, std::string kernel_type);
 
 private:
     float bandwidth;

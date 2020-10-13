@@ -7,7 +7,7 @@
 
 #include "Point.h"
 
-float kernel(const float distance, float bandwidth);
+float computeKernel(float dist, float bandwidth, std::string type);
 
 float computeDistance(const Point &p1,const Point &p2);
 
