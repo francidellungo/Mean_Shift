@@ -69,6 +69,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 #include <utility> // std::pair
 #include <stdexcept> // std::runtime_error
@@ -142,10 +143,9 @@ std::vector<Point> read_csv(std::string filename){
 std::vector<Point> getPointsFromCsv(std::string fileName)
 {
     std::vector<Point> points;
-
     std::ifstream data(fileName);
     std::string line;
-    while (std::getline(data, line)) {
+    while (getline(data, line)) {
         std::stringstream lineStream(line);
         std::string cell;
         std::vector<float> point;
@@ -155,30 +155,16 @@ std::vector<Point> getPointsFromCsv(std::string fileName)
     }
 
     return points;
+
 }
 
-/*
-void writeClustersToCsv(std::vector<Cluster> &clusters, std::string fileName)
-{
-    std::ofstream outputFile(fileName + ".csv");
-    int clusterId = 0;
-    for (auto &cluster : clusters) {
-        for (auto &point : cluster) {
-            for (auto &value : point) {
-                outputFile << value << ",";
-            }
-            outputFile << clusterId << "\n";
-        }
-        ++clusterId;
-    }
-}
-*/
+
 int main() {
     // Read three_cols.csv and ones.csv
     //std::vector<Point> three_cols = read_csv("three_cols.csv");
     //std::vector<Point> ones = read_csv("ones.csv");
 
-   std::vector<Point> points = getPointsFromCsv("datasets/100.csv");
+    std::vector<Point> points = getPointsFromCsv("../datasets/100.csv");
 
     return 0;
 }
