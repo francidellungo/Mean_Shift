@@ -30,11 +30,11 @@ int main(){
 
 //    read();
 
-    std::string fileName = "../datasets/100.csv";
+    std::string fileName = "../dataset/100.csv";
     std::vector<Point> pointss = getPointsFromCsv(fileName);
     std::cout << "number of pointss: " << pointss.size() << '\n';
 
-    savePointsToCsv(pointss);
+    savePointsToCsv(pointss, "../dataset/ms/100.csv");
 
     std::cout << "initial points:";
     for (auto& it: pointss) {

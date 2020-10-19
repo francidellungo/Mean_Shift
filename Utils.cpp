@@ -166,7 +166,11 @@ void savePointsToCsv(std::vector<Point> points, std::string filename){
     // Send data to the stream
     for(int i = 0; i < points.size(); ++i)
     {
-        myFile << "cci" << "\n";
+//        myFile << points[i].getValues() << "\n";
+        for(auto coord: points[i].getValues() ){
+            myFile << coord << ",";
+        }
+        myFile << "\n";
     }
 
     // Close the file
