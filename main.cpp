@@ -70,6 +70,8 @@ int main(){
     MeanShift MS = MeanShift(10, 2);
     std::vector<Point> pp = MS.doMeanShift(pointss);
 
+    savePointsToCsv(pp, "../dataset/ms/100.csv");
+
     std::cout << "final points:";
     for (auto& it: pp) {
         for(auto& coord: it.getValues())
@@ -102,46 +104,3 @@ int main(){
     return 0;
 }
 
-
-//// transform algorithm example
-//#include <iostream>     // std::cout
-//#include <algorithm>    // std::transform
-//#include <vector>       // std::vector
-//#include <functional>   // std::plus
-//
-//int op_increase (int i) { return ++i; }
-//float op_increasef (float i) { return ++i; }
-//
-//int main () {
-//    std::vector<int> foo;
-//    std::vector<int> bar;
-//    std::vector<float> prova;
-//
-//    // set some values:
-//    for (int i=1; i<6; i++){
-//        foo.push_back (i*10);                         // foo: 10 20 30 40 50
-//        prova.push_back(i);
-//    }
-//    bar.resize(foo.size());                         // allocate space
-//    std::cout << "prova contains:";
-//    for (std::vector<float>::iterator it=prova.begin(); it!=prova.end(); ++it)
-//        std::cout << ' ' << *it;
-//    std::cout << '\n';
-//
-//    std::transform (foo.begin(), foo.end(), bar.begin(), op_increase);
-//    std::transform (prova.begin(), prova.end(), prova.begin(), op_increasef);
-//    // bar: 11 21 31 41 51
-//
-//    // std::plus adds together its two arguments:
-//    std::transform (foo.begin(), foo.end(), bar.begin(), foo.begin(), std::plus<int>());
-//    // foo: 21 41 61 81 101
-//    std::transform(prova.begin(), prova.end(), prova.begin(),
-//                   bind2nd(std::plus<float>(), 1.5));
-//
-//    std::cout << "prova contains:";
-//    for (std::vector<float>::iterator it=prova.begin(); it!=prova.end(); ++it)
-//        std::cout << ' ' << *it;
-//    std::cout << '\n';
-//
-//    return 0;
-//}

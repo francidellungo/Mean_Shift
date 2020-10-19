@@ -158,17 +158,19 @@ std::vector<Point> getPointsFromCsv(std::string& fileName)
 
 }
 
-void savePointsToCsv(std::vector<Point> points, std::string filename){
+void savePointsToCsv(const std::vector<Point> points, std::string filename){
     std::cout << "savePointsToCsv" << std::endl;
 
     std::ofstream myFile(filename);
 
     // Send data to the stream
-    for(int i = 0; i < points.size(); ++i)
+    for(auto & point : points)
     {
-//        myFile << points[i].getValues() << "\n";
-        for(auto coord: points[i].getValues() ){
-            myFile << coord << ",";
+        for(int coord_idx = 0; coord_idx < point.getValues().size(); coord_idx++)
+        {
+            myFile << point.getValues()[coord_idx];
+            if(coord_idx != point.getValues().size() - 1)
+                myFile << ",";
         }
         myFile << "\n";
     }

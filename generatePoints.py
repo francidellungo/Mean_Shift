@@ -89,11 +89,11 @@ data, _ = generateData(points, n_features, centers, std)
 output_dir = os.path.join(datasets_dir, str(len(data)))
 
 saveData(data, output_dir)
-filename = "dataset/100.csv"
+filename = "dataset/ms/100.csv"
 
 cc = loadData(filename)
 print(len(cc))
-print(cc[:4])
+# print(cc[:4])
 
 plotData(cc)
 
