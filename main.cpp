@@ -7,6 +7,7 @@
 #include <cmath>
 #include "Point.h"
 #include "MeanShift.h"
+#include "Utils.h"
 //#include "Cluster.h"
 using namespace std;
 
@@ -21,7 +22,27 @@ string func(string &a){
     return a;
 };
 
-int main_(){
+int main(){
+
+//    std::vector<Point> pointss = readPointsFromCSV("dataset/100.csv");
+
+//    std::cout << "number of pointss: " << pointss.size() << '\n';
+
+//    read();
+
+    std::string fileName = "../datasets/100.csv";
+    std::vector<Point> pointss = getPointsFromCsv(fileName);
+    std::cout << "number of pointss: " << pointss.size() << '\n';
+
+    savePointsToCsv(pointss);
+
+    std::cout << "initial points:";
+    for (auto& it: pointss) {
+        for(auto& coord: it.getValues())
+            std::cout << ' ' << std::fixed << coord;
+        std::cout << '\n';
+    }
+
 //    define points
     auto* p1 = new Point(vector<float> { 1, 2, 3 });
     auto* p11 = new Point(vector<float> { 1.01, 2, 3 });
@@ -47,7 +68,7 @@ int main_(){
 
 //    do mean shift
     MeanShift MS = MeanShift(10, 2);
-    std::vector<Point> pp = MS.doMeanShift(points);
+    std::vector<Point> pp = MS.doMeanShift(pointss);
 
     std::cout << "final points:";
     for (auto& it: pp) {

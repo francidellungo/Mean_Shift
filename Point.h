@@ -8,6 +8,7 @@
 
 #include <vector>
 
+
 class Point {
 public:
     explicit Point(const std::vector<float> &values);

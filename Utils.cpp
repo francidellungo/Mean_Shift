@@ -140,7 +140,7 @@ std::vector<Point> read_csv(std::string filename){
     return result;
 }
 
-std::vector<Point> getPointsFromCsv(std::string fileName)
+std::vector<Point> getPointsFromCsv(std::string& fileName)
 {
     std::vector<Point> points;
     std::ifstream data(fileName);
@@ -158,13 +158,28 @@ std::vector<Point> getPointsFromCsv(std::string fileName)
 
 }
 
+void savePointsToCsv(std::vector<Point> points, std::string filename){
+    std::cout << "savePointsToCsv" << std::endl;
 
-int main() {
-    // Read three_cols.csv and ones.csv
-    //std::vector<Point> three_cols = read_csv("three_cols.csv");
-    //std::vector<Point> ones = read_csv("ones.csv");
+    std::ofstream myFile(filename);
 
-    std::vector<Point> points = getPointsFromCsv("../datasets/100.csv");
+    // Send data to the stream
+    for(int i = 0; i < points.size(); ++i)
+    {
+        myFile << "cci" << "\n";
+    }
 
-    return 0;
+    // Close the file
+    myFile.close();
 }
+
+
+//int main() {
+//    // Read three_cols.csv and ones.csv
+//    //std::vector<Point> three_cols = read_csv("three_cols.csv");
+//    //std::vector<Point> ones = read_csv("ones.csv");
+//
+//    std::vector<Point> points = getPointsFromCsv("../datasets/100.csv");
+//    std::cout << "number of pointss: " << points.size() << '\n';
+//    return 0;
+//}

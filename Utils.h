@@ -8,8 +8,19 @@
 
 #include <vector>
 #include <string>
+
 #include "Point.h"
 
+
 std::vector<Point> CSVReader(const std::string &filename);
+
+//std::vector<Point> readPointsFromCSV(const std::string& fileName);
+std::vector<Point> getPointsFromCsv(std::string& fileName);
+
+void savePointsToCsv(std::vector<Point> points, std::string filename);
+
+void read();
+
+void CSVWriter(const std::string &filename, std::vector<Point> points);  //TODO implement function!
 
 #endif //MEAN_SHIFT_UTILS_H

@@ -6,9 +6,9 @@ import csv
 
 points = 100
 n_features = 3
-centers = 2
+centers = 3
 std = 0.5
-datasets_dir = 'datasets'
+datasets_dir = 'dataset'
 
 
 def generateData(n_points, n_features, n_clusters, std):
@@ -37,14 +37,22 @@ def saveData(data, dest_dir):
     np.savetxt(dest_dir + ".csv", data, delimiter=",")
 
 
-# def loadData(source_dir):
-#     """
-#     Load dataset from file
-#     :param source_dir: directory where to load data
-#     :return: loaded dataset
-#     """
-#     d = np.load(source_dir + '.npy')
-#     return d
+def loadData(source_dir):
+    """
+    Load dataset from file
+    :param source_dir: directory where to load data
+    :return: loaded dataset
+    """
+    # d = np.load(source_dir + '.csv')
+    dates = []
+
+    with open(filename) as csvDataFile:
+        csvReader = csv.reader(csvDataFile)
+        for row in csvReader:
+            dates.append([float(r) for r in row])
+
+    return np.array(dates)
+    # return d
 
 
 def plotData(data, c='blue'):
@@ -81,9 +89,11 @@ data, _ = generateData(points, n_features, centers, std)
 output_dir = os.path.join(datasets_dir, str(len(data)))
 
 saveData(data, output_dir)
+filename = "dataset/100.csv"
 
-#cc = loadData(output_dir)
-#print(len(cc))
+cc = loadData(filename)
+print(len(cc))
+print(cc[:4])
 
-#plotData(cc)
+plotData(cc)
 
