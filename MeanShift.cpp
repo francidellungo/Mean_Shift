@@ -25,7 +25,6 @@ Point MeanShift::updatePoint(Point &point, const std::vector<Point> &original_po
         float distance = computeDistance(point, orig_point);
         float w = computeKernel(distance, this->bandwidth, kernel_type);
 //        update position of point to be shifted
-//        shifted_point += point * w;
 
         for(int d=0; d<point.getDim(); d++){ //for each dimension d do: num += coordinate_value * w
             numerator[d] += orig_point.getValues()[d] * w;
@@ -35,7 +34,6 @@ Point MeanShift::updatePoint(Point &point, const std::vector<Point> &original_po
     }
     std::transform(numerator.begin(), numerator.end(), numerator.begin(),
                    bind2nd(std::divides<float>(), denominator)); // numerator/ denominator
-//    point.setValues(numerator);
     return Point(numerator);
 };
 
@@ -46,7 +44,6 @@ std::vector<Point> MeanShift::doMeanShift(const std::vector<Point> &points){
     int n_iter = 100; //number of iterations to do
 
     for(int i=0; i<n_iter; i++){
-//        for(auto it = copied_points.begin(); it!=copied_points.end(); ++it){
 //      iterate over points
         for(int c=0; c< points.size(); c++){
             Point newPoint = updatePoint(copied_points[c], points);
