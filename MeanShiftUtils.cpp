@@ -21,9 +21,10 @@ float computeDistance(const Point &p1,const Point &p2){
 }
 
 float computeKernel(float dist, float bandwidth, const std::string type="gaussian"){
-    float res;
+    float weight;
 //    std::string type="gaussian";
     if (type == "gaussian")
-        res = expf(- dist*dist / (2 * bandwidth*bandwidth));
-    return res;
+//        weight = expf(- dist*dist / (2 * bandwidth*bandwidth));
+        weight = expf(- powf(dist, 2) / (2 * powf(bandwidth, 2)));
+    return weight;
 }

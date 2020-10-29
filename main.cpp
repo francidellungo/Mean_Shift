@@ -52,6 +52,7 @@ int main(){
     auto* p5 = new Point(vector<float> { 10, 11, 13 });
     auto* p6 = new Point(vector<float> { 10.2, 11, 12.5 });
     auto* p7 = new Point(vector<float> { 10.2, 11, 12.501 });
+    Point *p = new Point(vector<float>{1,2,3});
 
 //    create vector of points (to be done from csv file)
     std::vector<Point> points;
@@ -67,7 +68,7 @@ int main(){
     std::cout << "number of points: " << points.size() << '\n';
 
 //    do mean shift
-    MeanShift MS = MeanShift(10, 2);
+    MeanShift MS = MeanShift(2, 2);
     std::vector<Point> pp = MS.doMeanShift(pointss);
 
     savePointsToCsv(pp, "../dataset/ms/100.csv");
@@ -79,26 +80,26 @@ int main(){
         std::cout << '\n';
     }
 
-////    prove varie
-//    string food = "Pizza";
-//    string &meal = food;
-////
-//    cout << food << "\n";  // Outputs Pizza
-//    cout << meal << "\n";  // Outputs Pizza
+//    prove varie
+    string food = "Pizza";
+    string &meal = food;
 //
-//    string copia = meal;
-//    meal = "cambiato";
-//
-//    cout << copia << "\n";  // Outputs Pizza
-//    cout << meal << "\n";  // Outputs cambiato
-//
-//    cout << func(meal) << "\n";  // Outputs ciaone
-//    cout << meal << "\n";  // Outputs ciaone
+    cout << food << "\n";  // Outputs Pizza
+    cout << meal << "\n";  // Outputs Pizza
 
-//    cout << func(meal) << "\n";  // Outputs ciaone
-//    func(meal);
-//    cout << meal << "\n";
-//    const float ci = 10;
+    string copia = meal;
+    meal = "cambiato";
+
+    cout << copia << "\n";  // Outputs Pizza
+    cout << meal << "\n";  // Outputs cambiato
+
+    cout << func(meal) << "\n";  // Outputs ciaone
+    cout << meal << "\n";  // Outputs ciaone
+
+    cout << func(meal) << "\n";  // Outputs ciaone
+    func(meal);
+    cout << meal << "\n";
+    const float ci = 10;
 
 
     return 0;

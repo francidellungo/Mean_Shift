@@ -14,6 +14,14 @@ using namespace std;
 //    Point::z = obj.z;
 //
 //
+Point::Point(int dim) : dim(dim) {
+    vector<float> val;
+    val.reserve(dim);
+    for(int i=0; i<dim; i++)
+        val.push_back(0);
+    //set values to zero
+    this->setValues(val);
+}
 //}
 
 Point::Point(const vector<float> &values) : values(values) {
@@ -34,4 +42,34 @@ int Point::getDim() const {
 
 void Point::setDim(int dim) {
     Point::dim = dim;
+}
+
+Point &Point::operator+=(const Point &otherPoint){
+    for (int i = 0; i < this->getDim(); ++i) {
+        this->values[i] += otherPoint.getValues()[i];
+    }
+    return *this;
+}
+
+Point Point::operator/(float v) const {
+    Point point(this->getValues());
+    return point /= v;
+}
+
+Point &Point::operator/=(float d) {
+    for (long i = 0; i < this->getDim(); ++i)
+        this->values[i] /= d;
+    return *this;
+}
+
+Point Point::operator*(const float d) const {
+    Point point(this->values);
+    return point *= d;
+}
+
+
+Point &Point::operator*=(const float d) {
+    for (long i = 0; i < getDim(); ++i)
+        this->values[i] *= d;
+    return *this;
 }

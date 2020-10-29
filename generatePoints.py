@@ -6,8 +6,8 @@ import csv
 
 points = 100
 n_features = 3
-centers = 3
-std = 0.5
+centers = 2
+std = 2
 datasets_dir = 'dataset'
 
 
@@ -46,7 +46,7 @@ def loadData(source_dir):
     # d = np.load(source_dir + '.csv')
     dates = []
 
-    with open(filename) as csvDataFile:
+    with open(source_dir) as csvDataFile:
         csvReader = csv.reader(csvDataFile)
         for row in csvReader:
             dates.append([float(r) for r in row])
@@ -83,17 +83,24 @@ def plotData(data, c='blue'):
 
     plt.show()
 
+""" to generate points"""
+# data, _ = generateData(points, n_features, centers, std)
+#
+# output_dir = os.path.join(datasets_dir, str(len(data)))
+#
+# saveData(data, output_dir)
 
-data, _ = generateData(points, n_features, centers, std)
+""" to plot old and new points"""
 
-output_dir = os.path.join(datasets_dir, str(len(data)))
-
-saveData(data, output_dir)
-filename = "dataset/ms/100.csv"
+filename = "dataset/100.csv"
 
 cc = loadData(filename)
+plotData(cc)
 print(len(cc))
 # print(cc[:4])
 
-plotData(cc)
 
+
+new_filename = "dataset/ms/100.csv"
+newp = loadData(new_filename)
+plotData(newp)

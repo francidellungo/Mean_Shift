@@ -11,7 +11,7 @@ def generate_dataset(points, n_features, centers, std, file_name, output_directo
   
 def main():
 
-    '''Datasets with std=1 and well defined clusters'''
+    """Datasets with std=1 and well defined clusters"""
 
     DATASETS_DIR = '../datasets/different_clusters/'
 

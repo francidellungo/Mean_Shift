@@ -13,6 +13,8 @@ class Point {
 public:
     explicit Point(const std::vector<float> &values);
 
+    explicit Point(int dim);
+
 ////    define copy constructor to duplicate points
 //    Point( const Point &obj);
 
@@ -26,6 +28,15 @@ public:
 
     void setDim(int dim);
 
+    Point &operator+=(const Point &otherPoint);
+
+    Point operator/(float v) const;
+
+    Point &operator/=(float d);
+
+    Point operator*(float d) const;
+
+    Point &operator*=(float d);
 private:
     std::vector<float> values;
     int dim;
