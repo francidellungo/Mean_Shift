@@ -37,14 +37,16 @@ Point MeanShift::updatePoint(Point &point, const std::vector<Point> &original_po
     return Point(numerator);
 };
 
-std::vector<Point> MeanShift::doMeanShift(const std::vector<Point> &points){
+std::vector<Point> MeanShift::doMeanShift(const std::vector<Point> &points, const int num_threads){
     std::cout << "Mean Shift function" << '\n';
     std::vector<Point> copied_points = points;
 
     int n_iter = 100; //number of iterations to do
+    float bandwidth = this->bandwidth;
 
     for(int i=0; i<n_iter; i++){
 //      iterate over points
+#pragma omp parallel for default(none) shared(points, bandwidth, copied_points) schedule(static) num_threads(num_threads)
         for(int c=0; c< points.size(); c++){
             Point newPoint = updatePoint(copied_points[c], points);
             copied_points[c] = newPoint;

@@ -5,9 +5,11 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <omp.h>
 #include "Point.h"
 #include "MeanShift.h"
 #include "Utils.h"
+
 //#include "Cluster.h"
 using namespace std;
 
@@ -68,8 +70,11 @@ int main(){
     std::cout << "number of points: " << points.size() << '\n';
 
 //    do mean shift
+    int n_threads = omp_get_max_threads();
+    std::cout << "number of threads: " <<  n_threads << '\n';
+
     MeanShift MS = MeanShift(2, 2);
-    std::vector<Point> pp = MS.doMeanShift(pointss);
+    std::vector<Point> pp = MS.doMeanShift(pointss, n_threads);
 
     savePointsToCsv(pp, "../dataset/ms/100.csv");
 

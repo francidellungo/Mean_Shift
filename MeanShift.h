@@ -17,7 +17,7 @@ public:
             this->bandwidth = 1.0;
         }
     }
-    std::vector<Point> doMeanShift(const std::vector<Point> &points);
+    std::vector<Point> doMeanShift(const std::vector<Point> &points, int num_threads);
     Point updatePoint(Point &point, const std::vector<Point> &original_points, std::string kernel_type);
 
 private:
