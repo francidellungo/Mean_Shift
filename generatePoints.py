@@ -101,6 +101,10 @@ def plotData(data, c='blue'):
     ax = fig.add_subplot(111, projection='3d')
 
     # select x, y, z values from data
+
+    # coord = []
+    # for c in range(data.shape[-1]):
+    #     coord
     xs = data[:, 0]
     ys = data[:, 1]
     zs = data[:, 2]
