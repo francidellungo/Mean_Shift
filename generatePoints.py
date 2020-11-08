@@ -4,14 +4,14 @@ import numpy as np
 import os
 import csv
 
-points = 100
+points = 1000
 n_features = 3
 centers = 2
 std = 2
 datasets_dir = 'dataset'
 
 
-def generateData(n_points, n_features, n_clusters, std):
+def generatePoints(n_points, n_features, n_clusters, std):
     """
     Generate dataset of n-dimensional points
     :param n_points: total number of points
@@ -55,6 +55,37 @@ def loadData(source_dir):
     # return d
 
 
+def generateDatasets(save_dataset=True):
+    """Datasets with std=1 and well defined clusters"""
+
+    # DATASETS_DIR = '../datasets/different_clusters/'
+    #
+    # # two dimensional datasets
+    # for c in range(1, 6):
+    #     generate_dataset(points=10000, n_features=2, centers=c, std=1, file_name=f'2D_data_{c}.csv', output_directory=DATASETS_DIR)
+    #
+    # # three dimensional datasets
+    #
+    # for c in range(1, 6):
+    #     generate_dataset(points=10000, n_features=3, centers=c, std=1, file_name=f'3D_data_{c}.csv', output_directory=DATASETS_DIR)
+
+    """Datasets with an increasing number of points"""
+    dimensions = [100, 1000, 10000, 20000, 50000, 100000, 250000, 500000]
+    datasets_dir = 'dataset/variable_size'
+
+    # # two dimensional datasets
+    # for points in [100, 1000, 10000, 20000, 50000, 100000, 250000, 500000]:
+    #     generate_dataset(points, n_features=2, centers=3, std=2, file_name=f'2D_data_{points}.csv', output_directory=DATASETS_DIR)
+
+    # three dimensional datasets
+
+    for dim in dimensions:
+        data, _ = generatePoints(dim, n_features=3, n_clusters=centers, std=std)
+        if save_dataset:
+            output_dir = os.path.join(datasets_dir, str(dim))
+            saveData(data, output_dir)
+
+
 def plotData(data, c='blue'):
     """
     Plot 3d data
@@ -83,24 +114,26 @@ def plotData(data, c='blue'):
 
     plt.show()
 
-""" to generate points"""
-# data, _ = generateData(points, n_features, centers, std)
+
+# """ to generate points"""
+# data, _ = generatePoints(points, n_features, centers, std)
 #
 # output_dir = os.path.join(datasets_dir, str(len(data)))
 #
 # saveData(data, output_dir)
 
-""" to plot old and new points"""
+# """ to plot old and new points"""
+#
+# filename = "dataset/1000.csv"
+#
+# cc = loadData(filename)
+# plotData(cc)
+# print(len(cc))
+# # print(cc[:4])
+#
+#
+# new_filename = "dataset/ms/100.csv"
+# newp = loadData(new_filename)
+# plotData(newp)
 
-filename = "dataset/100.csv"
-
-cc = loadData(filename)
-plotData(cc)
-print(len(cc))
-# print(cc[:4])
-
-
-
-new_filename = "dataset/ms/100.csv"
-newp = loadData(new_filename)
-plotData(newp)
+generateDatasets(save_dataset=True)

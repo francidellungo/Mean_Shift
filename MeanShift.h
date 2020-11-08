@@ -17,12 +17,13 @@ public:
             this->bandwidth = 1.0;
         }
     }
+
     std::vector<Point> doMeanShift(const std::vector<Point> &points, int num_threads);
     Point updatePoint(Point &point, const std::vector<Point> &original_points, std::string kernel_type);
 
 private:
-    float bandwidth;
-    int max_iter;
+    float bandwidth; // bandwidth dimension
+    int max_iter; //number of iterations to do
 
 };
 

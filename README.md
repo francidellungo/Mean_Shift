@@ -9,6 +9,8 @@ It aims to discover “blobs” in a smooth density of samples. It is a centroid
 ## Dataset
 Create new folder: `mkdir dataset` 
 
+Create sub-folders: `mkdir dataset/variable_size`
+
 
 
 ## WORK IN PROGRESS...
