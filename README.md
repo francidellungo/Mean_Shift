@@ -12,5 +12,7 @@ Create new folder: `mkdir dataset`
 Create sub-folders: `mkdir dataset/variable_size`
 
 
+## Authors
+This project was carried out in collaboration with [Matteo Petrone](https://github.com/matpetrone) for the Parallel Computing exam.
 
 ## WORK IN PROGRESS...
