@@ -14,7 +14,6 @@
 
 void test(float bandwidth, std::string& points_filename, int iterations, int verbose=0);
 
-//int N_runs = 5;
 #define N_runs 5
 
 #endif //MEAN_SHIFT_TESTS_H

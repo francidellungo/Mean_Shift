@@ -53,3 +53,19 @@ std::vector<Point> MeanShift::doMeanShift(const std::vector<Point> &points, cons
     }
     return copied_points;
 }
+
+std::vector<Point> MeanShift::doSeqMeanShift(const std::vector<Point> &points){
+//    std::cout << "Mean Shift function" << '\n';
+    std::vector<Point> copied_points = points;
+
+    float bandwidth = this->bandwidth;
+
+    for(int i=0; i<this->max_iter; i++){
+//      iterate over points
+        for(int c=0; c< points.size(); c++){
+            Point newPoint = updatePoint(copied_points[c], points);
+            copied_points[c] = newPoint;
+        }
+    }
+    return copied_points;
+}

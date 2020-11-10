@@ -18,7 +18,8 @@ public:
         }
     }
 
-    std::vector<Point> doMeanShift(const std::vector<Point> &points, int num_threads);
+    std::vector<Point> doMeanShift(const std::vector<Point> &points, int num_threads=0);
+    std::vector<Point> doSeqMeanShift(const std::vector<Point> &points);
     Point updatePoint(Point &point, const std::vector<Point> &original_points, std::string kernel_type);
 
 private:

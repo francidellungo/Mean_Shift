@@ -128,16 +128,16 @@ def plotData(data, c='blue'):
 
 # """ to plot old and new points"""
 #
-# filename = "dataset/1000.csv"
-#
-# cc = loadData(filename)
-# plotData(cc)
-# print(len(cc))
-# # print(cc[:4])
-#
-#
-# new_filename = "dataset/ms/100.csv"
-# newp = loadData(new_filename)
-# plotData(newp)
+filename = "dataset/100.csv"
+
+cc = loadData(filename)
+plotData(cc)
+print(len(cc))
+# print(cc[:4])
+
+
+new_filename = "dataset/ms/100.csv"
+newp = loadData(new_filename)
+plotData(newp)
 
 generateDatasets(save_dataset=True)
