@@ -28,7 +28,7 @@ project(Mean_Shift CUDA)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Mean_Shift CUDA/MeanShift.cu CUDA/MeanShift.cuh)
+add_executable(Mean_Shift CUDA/MeanShift.cu CUDA/MeanShift.cuh CUDA/CudaUtils.h)
 
 #set_target_properties(
 #        Mean_Shift
