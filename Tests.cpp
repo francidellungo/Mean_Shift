@@ -44,10 +44,10 @@ void test(const float bandwidth, std::string& points_filename, const int iterati
             elapsed_time += std::chrono::duration_cast<std::chrono::duration<float>>(end_time - start_time).count();
 //            TODO save final points to file
         }
-        elapsed_time = elapsed_time / N_runs;
+        float openMP_time = elapsed_time / N_runs;
         if(verbose > 0){
-            std::cout << "#threads: " << n_threads << " -> elapsed time: " << elapsed_time << '\n';
-            std::cout << "speed-up: " << n_threads << " : " << seq_time/elapsed_time << '\n';
+            std::cout << "#threads: " << n_threads << " -> elapsed time: " << openMP_time << '\n';
+            std::cout << "speed-up: " << n_threads << " : " << seq_time/openMP_time << '\n';
 
         }
     }

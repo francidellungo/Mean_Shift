@@ -71,7 +71,7 @@ def generateDatasets(save_dataset=True):
 
     """Datasets with an increasing number of points"""
     dimensions = [100, 1000, 10000, 20000, 50000, 100000, 250000, 500000]
-    datasets_dir = 'dataset/variable_size'
+    datasets_dir = 'dataset/3d'
 
     # # two dimensional datasets
     # for points in [100, 1000, 10000, 20000, 50000, 100000, 250000, 500000]:
