@@ -74,5 +74,20 @@ std::vector<float> getPointsFromCsv(std::string& file_name){
 }
 
 
+// Write points to CSV file
+
+void savePointsToCsv(const std::vector<float> points, std::string filename, const int num_points){
+    std::cout << "save final points to csv" << std::endl;
+    std::ofstream myFile(filename);
+
+    // Send data to the stream
+    for(int i=0; i < num_points; i++){
+        myFile << points[i] << ",";
+        myFile << points[i + num_points] << ",";
+        myFile << points[i + 2 * num_points] << "\n";
+    }
+    // Close the file
+    myFile.close();
+}
 
 #endif //MEAN_SHIFT_CUDAUTILS_H

@@ -6,7 +6,7 @@ import csv
 
 points = 1000
 n_features = 3
-centers = 2
+centers = 3
 std = 2
 datasets_dir = 'dataset'
 
@@ -86,7 +86,7 @@ def generateDatasets(save_dataset=True):
             saveData(data, output_dir)
 
 
-def plotData(data, c='blue'):
+def plot3dData(data, c='blue'):
     """
     Plot 3d data
     :param data: numpy array of data. dims: [n_points, 3]
@@ -126,18 +126,18 @@ def plotData(data, c='blue'):
 #
 # saveData(data, output_dir)
 
-# """ to plot old and new points"""
-#
-filename = "dataset/100.csv"
+""" Plot old and new points"""
+
+filename = "dataset/3d/1000.csv"
 
 cc = loadData(filename)
-plotData(cc)
+plot3dData(cc)
 print(len(cc))
 # print(cc[:4])
 
 
-new_filename = "dataset/ms/100.csv"
+new_filename = "dataset/ms/cuda/1000.csv"
 newp = loadData(new_filename)
-plotData(newp)
+plot3dData(newp)
 
-generateDatasets(save_dataset=True)
+# generateDatasets(save_dataset=True)
