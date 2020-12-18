@@ -80,7 +80,7 @@ def generateDatasets(save_dataset=True):
     # three dimensional datasets
 
     for dim in dimensions:
-        data, _ = generatePoints(dim, n_features=3, n_clusters=centers, std=std)
+        data, cluster_id = generatePoints(dim, n_features=3, n_clusters=centers, std=std)
         if save_dataset:
             output_dir = os.path.join(datasets_dir, str(dim))
             saveData(data, output_dir)
@@ -90,7 +90,7 @@ def plot3dData(data, c='blue'):
     """
     Plot 3d data
     :param data: numpy array of data. dims: [n_points, 3]
-    :param c: colour (optional)
+    :param c: colour or cluster id (optional)
     :return:
     """
     from mpl_toolkits.mplot3d import Axes3D
@@ -109,6 +109,9 @@ def plot3dData(data, c='blue'):
     ys = data[:, 1]
     zs = data[:, 2]
 
+    if data.shape[-1] == 4:
+        c = data[:, 3]
+
     # plot data points
     ax.scatter(xs, ys, zs, c=c)
 
@@ -119,24 +122,31 @@ def plot3dData(data, c='blue'):
     plt.show()
 
 
-# """ to generate points"""
-# data, _ = generatePoints(points, n_features, centers, std)
-#
+""" to generate points"""
+# data, cluster_idx = generatePoints(points, n_features, centers, std)
+# plot3dData(data, cluster_idx)
 # output_dir = os.path.join(datasets_dir, str(len(data)))
 #
 # saveData(data, output_dir)
 
 """ Plot old and new points"""
 
+# original dataset
 filename = "dataset/3d/1000.csv"
 
 cc = loadData(filename)
 plot3dData(cc)
 print(len(cc))
-# print(cc[:4])
 
 
-new_filename = "dataset/ms/cuda/1000.csv"
+# shifted data
+shifted_filename = "dataset/ms/seq/1000.csv"
+newp = loadData(shifted_filename)
+plot3dData(newp)
+
+# original data with cluster id (--> color)
+# new_filename = "dataset/ms/cuda/1000.csv"
+new_filename = "dataset/c_1000.csv"
 newp = loadData(new_filename)
 plot3dData(newp)
 

@@ -83,7 +83,7 @@ int main(){
     float elapsed_time = 0;
     int n_blocks = 1;
     int n_threads = 5;
-    int n_iterations = 10;
+    int n_iterations = 20;
 
 //   Path to save final shifted points
     std::string output_filename = "dataset/ms/cuda/";

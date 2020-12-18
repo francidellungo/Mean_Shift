@@ -108,7 +108,8 @@ int main(){
 //    const float ci = 10;
 
     std::string filename = "../dataset/1000.csv";
-    test(2, filename, 20, 1);
+    std::string output_filename = "../dataset/ms/seq/1000.csv";
+    test(2, filename, 20, output_filename, 1);
 
     return 0;
 }

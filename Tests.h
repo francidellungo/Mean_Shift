@@ -12,7 +12,7 @@
 #include "Utils.h"
 #include "MeanShift.h"
 
-void test(float bandwidth, std::string& points_filename, int iterations, int verbose=0);
+void test(float bandwidth, std::string& points_filename, int iterations, std::string& output_filename, int verbose=0);
 
 #define N_runs 5
 

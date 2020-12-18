@@ -4,13 +4,13 @@
 
 #include <iostream>
 #include "Tests.h"
-
+#include "Utils.h"
 
 void testSequential(const float bandwidth, std::string& points_filename, const int iterations, int verbose){
 
 }
 
-void test(const float bandwidth, std::string& points_filename, const int iterations, int verbose) {
+void test(const float bandwidth, std::string& points_filename, const int iterations, std::string& output_filename, int verbose) {
 //    test algorithm execution time with a different number of threads (for openMP parallel version)
     std::vector<Point> points = getPointsFromCsv(points_filename);
     std::cout << "#points: " << points.size() << ", bandwidth: " << bandwidth << ", n iterations: " << iterations << '\n';
@@ -25,6 +25,9 @@ void test(const float bandwidth, std::string& points_filename, const int iterati
         std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
 
         elapsed_time += std::chrono::duration_cast<std::chrono::duration<float>>(end_time - start_time).count();
+
+        if (run_idx == N_runs - 1)
+            savePointsToCsv(pp, output_filename);
 //            TODO save final points to file
     }
     float seq_time = elapsed_time / N_runs;
