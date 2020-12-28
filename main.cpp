@@ -107,9 +107,13 @@ int main(){
 //    cout << meal << "\n";
 //    const float ci = 10;
 
-    std::string filename = "../dataset/1000.csv";
-    std::string output_filename = "../dataset/ms/seq/1000.csv";
+    std::string filename = "../dataset/3d/1000.csv";
+    std::string output_filename = "../experiments/ms";
     test(2, filename, 20, output_filename, 1);
+
+
+
+
 
     return 0;
 }

@@ -179,6 +179,22 @@ void savePointsToCsv(const std::vector<Point> points, std::string filename){
     myFile.close();
 }
 
+std::vector<std::string> getPathTokens(std::string s, const std::string delimiter){
+    std::vector<std::string> tokens;
+    size_t pos = 0;
+    std::string token;
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        token = s.substr(0, pos);
+        tokens.push_back(token);
+        s.erase(0, pos + delimiter.length());
+    }
+    tokens.push_back(s);
+
+//    for(auto & t : tokens){
+//        std::cout << t << std::endl;
+//    }
+    return tokens;
+}
 
 //int main() {
 //    // Read three_cols.csv and ones.csv

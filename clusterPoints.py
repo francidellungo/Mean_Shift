@@ -1,6 +1,8 @@
 import csv
 # import pandas as pd
 import math
+import os
+from generatePoints import plot3dData
 
 
 def compute_distance(point1, point2):
@@ -32,13 +34,10 @@ def is_coloured(new_dir, index, n_features):
                 return False
 
 
-def color_clusters(shifted_csv, out_csv = None, threshold=1.5):
-    split_dir = shifted_csv.split('/')
-    if out_csv is None:
-        out_csv = split_dir[0] + '/c_' + split_dir[-1]
+def color_clusters(shifted_csv, out_csv='experiments/original', threshold=1.5, dataset_dir='dataset/3d'):
+    split_dir = shifted_csv.split('/')  # 'dataset/ms/1000.csv'
 
-    # new_dir = split_dir[0] + '/c_' + split_dir[-1]
-    with open(split_dir[0] + '/' + split_dir[-1], 'r') as orig_csv:
+    with open(os.path.join(dataset_dir, split_dir[-1]), 'r') as orig_csv:  # dataset/3d/1000.csv
         with open(out_csv, 'w') as color_csv:
             with open(shifted_csv, 'r') as shifted_csv:
                 or_csv = csv.reader(orig_csv, delimiter=',')
@@ -66,6 +65,14 @@ def color_clusters(shifted_csv, out_csv = None, threshold=1.5):
 
 
 if __name__ == '__main__':
-    shift_csv = 'dataset/ms/1000.csv'
+
+    # assign cluster to every original point based on mean shift resulting position
+    filename = '1000.csv'
+    ms_versions = {0: 'seq', 1: 'openmp', 2: 'cuda'}
+    ms_version = ms_versions[2]
+    shifted_dir = 'experiments/ms'
+    output_dir = 'experiments/original'
     output_csv = 'dataset/c_1000.csv'
-    color_clusters(shift_csv, output_csv, threshold=10)
+    dataset_dir = 'dataset/3d'
+    color_clusters(os.path.join(shifted_dir, ms_version, filename), os.path.join(output_dir, filename), threshold=10, dataset_dir=dataset_dir)
+    # plot3dData()

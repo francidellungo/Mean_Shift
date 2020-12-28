@@ -21,6 +21,8 @@ void savePointsToCsv(std::vector<Point> points, std::string filename);
 
 void read();
 
-void CSVWriter(const std::string &filename, std::vector<Point> points);  //TODO implement function!
+void CSVWriter(const std::string &filename, std::vector<Point> points);
+
+std::vector<std::string> getPathTokens(std::string s, std::string delimiter);
 
 #endif //MEAN_SHIFT_UTILS_H

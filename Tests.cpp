@@ -12,10 +12,13 @@ void testSequential(const float bandwidth, std::string& points_filename, const i
 
 void test(const float bandwidth, std::string& points_filename, const int iterations, std::string& output_filename, int verbose) {
 //    test algorithm execution time with a different number of threads (for openMP parallel version)
+
     std::vector<Point> points = getPointsFromCsv(points_filename);
+    std::vector<std::string> path_tokens = getPathTokens(points_filename, "/");
+    std::string csv_filename = path_tokens.back();
     std::cout << "#points: " << points.size() << ", bandwidth: " << bandwidth << ", n iterations: " << iterations << '\n';
 
-//    sequential version
+//    Sequential version
     float elapsed_time = 0;
     MeanShift MS = MeanShift(bandwidth, iterations);
 
@@ -26,15 +29,19 @@ void test(const float bandwidth, std::string& points_filename, const int iterati
 
         elapsed_time += std::chrono::duration_cast<std::chrono::duration<float>>(end_time - start_time).count();
 
-        if (run_idx == N_runs - 1)
-            savePointsToCsv(pp, output_filename);
-//            TODO save final points to file
+        if (run_idx == N_runs - 1){
+//            Save final points to file
+//            std::string final_out_path = output_filename + "/seq/" + csv_filename;
+
+            savePointsToCsv(pp, output_filename + "/seq/" + csv_filename);
+        }
+
     }
     float seq_time = elapsed_time / N_runs;
     if(verbose > 0)
         std::cout  << " seq version -> elapsed time: " << seq_time << '\n';
 
-//    parallel version (OpenMP)
+//    Parallel version (OpenMP)
     for(int n_threads=1; n_threads <= omp_get_max_threads(); n_threads++){
         float elapsed_time = 0;
 
@@ -45,7 +52,13 @@ void test(const float bandwidth, std::string& points_filename, const int iterati
             std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
 
             elapsed_time += std::chrono::duration_cast<std::chrono::duration<float>>(end_time - start_time).count();
-//            TODO save final points to file
+
+            if (run_idx == N_runs - 1){
+//            Save final points to file
+//                std::string final_out_path = output_filename + "/openmp/" + csv_filename;
+
+                savePointsToCsv(pp, output_filename + "/openmp/" + csv_filename);
+            }
         }
         float openMP_time = elapsed_time / N_runs;
         if(verbose > 0){

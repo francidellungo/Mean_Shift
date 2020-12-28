@@ -7,7 +7,7 @@ import csv
 points = 1000
 n_features = 3
 centers = 3
-std = 2
+std = 1
 datasets_dir = 'dataset'
 
 
@@ -55,7 +55,7 @@ def loadData(source_dir):
     # return d
 
 
-def generateDatasets(save_dataset=True):
+def generateDatasets(save_dataset=True, datasets_dir='dataset/3d'):
     """Datasets with std=1 and well defined clusters"""
 
     # DATASETS_DIR = '../datasets/different_clusters/'
@@ -71,7 +71,6 @@ def generateDatasets(save_dataset=True):
 
     """Datasets with an increasing number of points"""
     dimensions = [100, 1000, 10000, 20000, 50000, 100000, 250000, 500000]
-    datasets_dir = 'dataset/3d'
 
     # # two dimensional datasets
     # for points in [100, 1000, 10000, 20000, 50000, 100000, 250000, 500000]:
@@ -82,8 +81,13 @@ def generateDatasets(save_dataset=True):
     for dim in dimensions:
         data, cluster_id = generatePoints(dim, n_features=3, n_clusters=centers, std=std)
         if save_dataset:
+            # save dataset points
             output_dir = os.path.join(datasets_dir, str(dim))
             saveData(data, output_dir)
+            # save dataset points with generated cluster id
+            data_with_cidx = np.hstack((data, np.expand_dims(cluster_id,1)))
+            saveData(data_with_cidx, os.path.join(datasets_dir, 'c_' + str(dim)))
+
 
 
 def plot3dData(data, c='blue'):
@@ -123,6 +127,8 @@ def plot3dData(data, c='blue'):
 
 
 """ to generate points"""
+# generateDatasets(True)
+
 # data, cluster_idx = generatePoints(points, n_features, centers, std)
 # plot3dData(data, cluster_idx)
 # output_dir = os.path.join(datasets_dir, str(len(data)))
@@ -132,7 +138,7 @@ def plot3dData(data, c='blue'):
 """ Plot old and new points"""
 
 # original dataset
-filename = "dataset/3d/1000.csv"
+filename = "dataset/3d/c_1000.csv"
 
 cc = loadData(filename)
 plot3dData(cc)
@@ -140,13 +146,14 @@ print(len(cc))
 
 
 # shifted data
-shifted_filename = "dataset/ms/seq/1000.csv"
+shifted_filename = "experiments/ms/cuda/1000.csv"
 newp = loadData(shifted_filename)
 plot3dData(newp)
 
 # original data with cluster id (--> color)
 # new_filename = "dataset/ms/cuda/1000.csv"
-new_filename = "dataset/c_1000.csv"
+
+new_filename = "experiments/original/1000.csv"
 newp = loadData(new_filename)
 plot3dData(newp)
 
