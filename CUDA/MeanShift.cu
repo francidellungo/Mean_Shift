@@ -14,7 +14,7 @@
 #include <thrust/device_vector.h>
 
 #include "CudaUtils.h"
-#include "CudaTests.h"
+
 #define N_runs 5 // same in Test.h for sequential and openMP implementations
 #define BLOCK_DIM 32
 
@@ -211,8 +211,8 @@ void test(const float bandwidth, std::string &points_filename, const int n_itera
         std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
 
         for(int i=0; i < n_iterations; i++){
-            TilingMeanShift<<<num_blocks, num_threads>>>(shifted_pointer, orig_pointer, num_points, bandwidth);
-//            MeanShift_3D<<<num_blocks, num_threads>>>(shifted_pointer, orig_pointer, num_points, bandwidth);
+//            TilingMeanShift<<<num_blocks, num_threads>>>(shifted_pointer, orig_pointer, num_points, bandwidth);
+            MeanShift_3D<<<num_blocks, num_threads>>>(shifted_pointer, orig_pointer, num_points, bandwidth);
             cudaDeviceSynchronize();
         }
         std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();

@@ -3,12 +3,14 @@
 It aims to discover “blobs” in a smooth density of samples. It is a centroid-based algorithm, which works by updating candidates for centroids to be the mean of the points within a given region.
 
 <p align="center">
-  <img src="https://github.com/francidellungo/Mean_Shift/blob/master/readme_imgs/mean-shift.gif" width="600">
+  <img src="https://github.com/francidellungo/Mean_Shift/blob/master/docs/readme_imgs/mean-shift.gif" width="600">
 </p>
 
 ### Directories Layout
 
 ```bash
+├── docs                       # Documentation files
+│   ├── readme_imgs
 ├── dataset                    # Generated datasets
 │   ├── 3d                     # 3d points (x,y,z)
 │   │   ├── 100                # Different sizes
@@ -28,16 +30,16 @@ It aims to discover “blobs” in a smooth density of samples. It is a centroid
 ```
 
 ## Dataset
-Create new folder:
+Create new folder: 
  
  `mkdir dataset` 
 
-Create sub-folders: 
+Create sub-folder:
  
  `mkdir dataset/3d`
 
 ## Experiments
-Create new folder: 
+Create new folder:
 
 `mkdir experiments` 
 
