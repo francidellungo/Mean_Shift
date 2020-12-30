@@ -66,7 +66,7 @@ std::vector<float> getPointsFromCsv(std::string& file_name){
         z.push_back(point[2]);
     }
 //  all points in one only vector [x1,...xn, y1, ... yn, z1, ... zn]
-    printf("num points: %d \n", x.size());
+    printf("num points: %zu \n", x.size());
     std::vector<float> all_points = x;
     all_points.insert(all_points.end(), y.begin(), y.end());
     all_points.insert(all_points.end(), z.begin(), z.end());
@@ -88,6 +88,33 @@ void savePointsToCsv(const std::vector<float> points, std::string filename, cons
     }
     // Close the file
     myFile.close();
+}
+
+struct Result{
+    bool tiling;
+    int num_points;
+    float bandwidth;
+    int ms_iterations;
+    int runs;
+    float time;
+};
+
+void saveResultsToCsv(std::vector<Result> results_time, std::string filename){
+//    Save time results for experiments to file
+    std::ofstream myFile(filename);
+
+    // Send data to the stream
+    for(auto experiment : results_time){
+        myFile << experiment.tiling << ",";
+        myFile << experiment.num_points << ",";
+        myFile << experiment.bandwidth << ",";
+        myFile << experiment.ms_iterations << ",";
+        myFile << experiment.runs << ",";
+        myFile << experiment.time << "\n";
+    }
+    // Close the file
+    myFile.close();
+
 }
 
 #endif //MEAN_SHIFT_CUDAUTILS_H

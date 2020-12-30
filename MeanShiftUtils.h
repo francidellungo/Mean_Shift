@@ -5,6 +5,7 @@
 #ifndef MEAN_SHIFT_MEANSHIFTUTILS_H
 #define MEAN_SHIFT_MEANSHIFTUTILS_H
 
+#include <string>
 #include "Point.h"
 
 float computeKernel(float dist, float bandwidth, std::string type);
