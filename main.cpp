@@ -14,16 +14,16 @@
 //#include "Cluster.h"
 using namespace std;
 
-string func(string &a){
-    string b = a;
-    a = "ciaone";
-    cout << a << "\n";
-    cout << b << "\n";
-    b = "cicci";
-    cout << a << "\n";
-    cout << b << "\n";
-    return a;
-};
+//string func(string &a){
+//    string b = a;
+//    a = "ciaone";
+//    cout << a << "\n";
+//    cout << b << "\n";
+//    b = "cicci";
+//    cout << a << "\n";
+//    cout << b << "\n";
+//    return a;
+//};
 
 int main(){
 
@@ -107,10 +107,60 @@ int main(){
 //    cout << meal << "\n";
 //    const float ci = 10;
 
-    std::string filename = "../dataset/3d/1000.csv";
-    std::string output_filename = "../experiments/ms";
-    test(2, filename, 20, output_filename, 1);
+    char path[] = __FILE__;
+    std::string p = std::string(path);
+//    std::cout << "Current path is: " << p << '\n';
+    bool on_server = false;
+    if (p == "main.cpp"){
+        on_server = true;
+        std::cout << "on server "  << '\n';
+    }
+    else
+        std::cout << "local "  << '\n';
 
+    int n_points = 1000;
+    int n_iterations = 10;
+
+    std::string filename;
+    std::string dataset_dir;
+    std::string output_filename;
+    std::string times_output_dir;
+    std::string times_output_filename;
+
+
+    if (on_server){
+        //  server paths
+        filename = "dataset/3d/" + std::to_string(n_points) +".csv";
+        dataset_dir = "dataset/3d/";
+        output_filename = "experiments/ms";
+        times_output_dir = "experiments/times/";
+    } else{
+//    local paths
+        filename = "../dataset/3d/" + std::to_string(n_points) +".csv";
+        dataset_dir = "../dataset/3d/";
+        output_filename = "../experiments/ms";
+        times_output_dir = "../experiments/times/";
+
+    }
+
+
+//    Initialize vector to store time results
+    std::vector<Result> results_time;
+
+//    Iterate over different dimensions
+    int dimensions [8] = {100, 1000, 10000, 100000};
+//    int dimensions [8] = {100, 1000, 10000, 100000, 1000000};
+
+    for(auto dim : dimensions){
+        filename = dataset_dir + std::to_string(dim) +".csv";
+        times_output_filename = times_output_dir + "seq_openMP" + std::to_string(dim) + ".csv";
+        test(2, filename, n_iterations, output_filename, results_time, 0);
+        saveResultsToCsv(results_time, times_output_filename);
+    }
+
+
+//    Save results at the end
+//    saveResultsToCsv(results_time, times_output_filename);
 
 
 

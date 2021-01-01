@@ -76,6 +76,7 @@
 #include <sstream> // std::stringstream
 
 #include "Point.h"
+#include "Utils.h"
 
 std::vector<Point> read_csv(std::string filename){
     // Reads a CSV file into a vector of <string, vector<int>> pairs where
@@ -158,8 +159,9 @@ std::vector<Point> getPointsFromCsv(std::string& fileName)
 
 }
 
-void savePointsToCsv(const std::vector<Point> points, std::string filename){
-    std::cout << "savePointsToCsv" << std::endl;
+void savePointsToCsv(const std::vector<Point> points, std::string filename, int verbose){
+    if (verbose > 0)
+        std::cout << "savePointsToCsv" << std::endl;
 
     std::ofstream myFile(filename);
 
@@ -196,12 +198,24 @@ std::vector<std::string> getPathTokens(std::string s, const std::string delimite
     return tokens;
 }
 
-//int main() {
-//    // Read three_cols.csv and ones.csv
-//    //std::vector<Point> three_cols = read_csv("three_cols.csv");
-//    //std::vector<Point> ones = read_csv("ones.csv");
-//
-//    std::vector<Point> points = getPointsFromCsv("../datasets/100.csv");
-//    std::cout << "number of pointss: " << points.size() << '\n';
-//    return 0;
-//}
+
+
+void saveResultsToCsv(std::vector<Result> results_time, std::string filename){
+//    Save time results for experiments to file
+    std::ofstream myFile(filename);
+
+    // Send data to the stream
+    for(auto experiment : results_time){
+        myFile << experiment.opeMP_par << ",";
+        myFile << experiment.omp_static << ",";
+        myFile << experiment.n_threads << ",";
+        myFile << experiment.num_points << ",";
+        myFile << experiment.bandwidth << ",";
+        myFile << experiment.ms_iterations << ",";
+        myFile << experiment.runs << ",";
+        myFile << experiment.time << "\n";
+    }
+    // Close the file
+    myFile.close();
+
+}

@@ -9,6 +9,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
+
+#include <cstdarg>
 
 // summation
 inline __host__ __device__ float3 operator+(float3 a, float3 b){
@@ -66,7 +69,7 @@ std::vector<float> getPointsFromCsv(std::string& file_name){
         z.push_back(point[2]);
     }
 //  all points in one only vector [x1,...xn, y1, ... yn, z1, ... zn]
-    printf("num points: %zu \n", x.size());
+//    printf("num points: %zu \n", x.size());
     std::vector<float> all_points = x;
     all_points.insert(all_points.end(), y.begin(), y.end());
     all_points.insert(all_points.end(), z.begin(), z.end());
@@ -77,7 +80,7 @@ std::vector<float> getPointsFromCsv(std::string& file_name){
 // Write points to CSV file
 
 void savePointsToCsv(const std::vector<float> points, std::string filename, const int num_points){
-    std::cout << "save final points to csv" << std::endl;
+    std::cout << "Save final points to csv" << std::endl;
     std::ofstream myFile(filename);
 
     // Send data to the stream
@@ -91,7 +94,7 @@ void savePointsToCsv(const std::vector<float> points, std::string filename, cons
 }
 
 struct Result{
-    bool tiling;
+    bool tiling;  // 0: naive cuda, 1: tiling cuda
     int num_points;
     float bandwidth;
     int ms_iterations;
@@ -115,6 +118,23 @@ void saveResultsToCsv(std::vector<Result> results_time, std::string filename){
     // Close the file
     myFile.close();
 
+}
+
+//void saveToCsv(std::string filename){
+//    std::ofstream myFile(filename);
+//    myFile << "ciao" << ",";
+//    myFile << "nini" << "\n";
+//    myFile.close();
+//}
+
+
+std::string joinPath(std::vector<std::string> paths_vec){
+    std::string final_path ="";
+    std::string sep = "/";
+    for(auto wp : paths_vec){
+        final_path = final_path.append(wp + sep);
+    }
+    return final_path;
 }
 
 #endif //MEAN_SHIFT_CUDAUTILS_H

@@ -12,8 +12,8 @@
 #include "Utils.h"
 #include "MeanShift.h"
 
-void test(float bandwidth, std::string& points_filename, int iterations, std::string& output_filename, int verbose=0);
+void test(float bandwidth, std::string& points_filename, int iterations, std::string& output_filename, std::vector<Result>& time_res_vec, int verbose=0);
 
-#define N_runs 5
+#define N_runs 10
 
 #endif //MEAN_SHIFT_TESTS_H
