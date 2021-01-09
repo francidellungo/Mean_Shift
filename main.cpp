@@ -148,13 +148,15 @@ int main(){
     std::vector<Result> results_time;
 
 //    Iterate over different dimensions
-    int dimensions [8] = {100, 1000, 10000, 100000};
-//    int dimensions [8] = {100, 1000, 10000, 100000, 1000000};
+    int dimensions [6] = {100, 500, 1000, 10000, 100000, 1000000};
+//    int dimensions [6] = {100, 500, 1000, 10000, 100000, 500000}; //, 1000000};
+//    int dimensions [3] = {100000, 500000, 1000000};
 
     for(auto dim : dimensions){
         filename = dataset_dir + std::to_string(dim) +".csv";
-        times_output_filename = times_output_dir + "seq_openMP" + std::to_string(dim) + ".csv";
-        test(2, filename, n_iterations, output_filename, results_time, 0);
+        times_output_filename = times_output_dir + "seq_openMP_" + std::to_string(dim) + "_" + std::to_string(N_runs)+ ".csv";
+        std::cout << "Final times filename: " << times_output_filename << std::endl;
+        test(2, filename, n_iterations, output_filename, results_time, 1);
         saveResultsToCsv(results_time, times_output_filename);
     }
 

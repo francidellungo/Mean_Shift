@@ -57,7 +57,8 @@ void test(const float bandwidth, std::string& points_filename, const int iterati
 //    Parallel version (OpenMP)
     time_res.opeMP_par = true;
     time_res.omp_static = true; // it does NOT change automatically!
-    for(int n_threads=1; n_threads <= omp_get_max_threads(); n_threads++){
+    for(int n_threads=2; n_threads <= omp_get_max_threads(); n_threads++){
+//    for(int n_threads=2; n_threads <= 20; n_threads++){
         float elapsed_time = 0;
 
 //        mean time on N_runs runs

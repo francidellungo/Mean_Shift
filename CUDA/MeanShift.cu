@@ -16,7 +16,7 @@
 #include "CudaUtils.h"
 
 
-#define N_runs 10 // same in Test.h for sequential and openMP implementations
+#define N_runs 15 // same in Test.h for sequential and openMP implementations
 
 
 //tiling version
@@ -32,7 +32,7 @@ __global__ void MeanShift_3D(float* shifted_points, const float* orig_points, co
     float3 new_position = make_float3(0.0, 0.0, 0.0);
     float tot_weight = 0.0;
 
-    if(idx < num_points){
+    if(idx < num_points){ // Ensure that threads do not attempt illegal memory access (this can happen because there could be more threads than elements in an array)
         float x = shifted_points[idx];
         float y = shifted_points[idx + num_points];
         float z = shifted_points[idx + 2 * num_points];
@@ -88,28 +88,25 @@ __global__ void TilingMeanShift(float* shiftedPoints, const float*  originalPoin
         __syncthreads();
 
         if(idx < numPoints){
-            float x = shiftedPoints[idx];
-            float y = shiftedPoints[idx + numPoints];
-            float z = shiftedPoints[idx + 2 * numPoints];
-            float3 shiftedPoint = make_float3(x, y, z);
+//            float x = shiftedPoints[idx];
+//            float y = shiftedPoints[idx + numPoints];
+//            float z = shiftedPoints[idx + 2 * numPoints];
+            float3 shiftedPoint = make_float3(shiftedPoints[idx], shiftedPoints[idx + numPoints], shiftedPoints[idx + 2 * numPoints]);
 
 //      Process data (of current tile)
             for(int i = 0; i < TILE_WIDTH; i++){
-                if (tile[i][0] != 0.0 && tile[i][1] != 0.0 && tile[i][2] != 0.0) {
-                    float3 originalPoint = make_float3(tile[i][0], tile[i][1], tile[i][2]);
-                    float3 difference = shiftedPoint - originalPoint;
-                    float squared_dist = dot(difference, difference);
-//                    if(sqrt(squaredDistance) <= bandwidth){
-                    float weight = std::exp((-squared_dist) / (2 * powf(bandwidth, 2)));
-                    new_pos += originalPoint * weight;
-                    tot_weight += weight;
-//                    }
-                }
+                float3 originalPoint = make_float3(tile[i][0], tile[i][1], tile[i][2]); // from shared mem
+                float3 difference = shiftedPoint - originalPoint;
+                float squared_dist = dot(difference, difference);
+//                if(sqrt(squared_dist) <= bandwidth){
+                float weight = std::exp((-squared_dist) / (2 * powf(bandwidth, 2)));
+                new_pos += originalPoint * weight;
+                tot_weight += weight;
+//                }
             }
         }
         __syncthreads();
     }
-
     if(idx < numPoints){
         new_pos /= tot_weight;
         shiftedPoints[idx] = new_pos.x;
@@ -120,13 +117,74 @@ __global__ void TilingMeanShift(float* shiftedPoints, const float*  originalPoin
 }
 
 
+__global__ void TilingMeanShift_v2(float* shiftedPoints, const float*  originalPoints, const unsigned numPoints, float bandwidth, const int pt_dim) {
+    __shared__ float tile[TILE_WIDTH][3];
+
+    int tx = threadIdx.x;
+    int idx = blockIdx.x * blockDim.x + tx;
+
+    float3 new_pos = make_float3(0.0, 0.0, 0.0);
+    float tot_weight = 0.0;
+
+    for (int tile_i = 0; tile_i < (numPoints - 1) / TILE_WIDTH + 1; ++tile_i) {
+
+//      Load data from global memory into shared memory
+        int tile_idx = tile_i * TILE_WIDTH + tx;
+
+		int index = tile_idx * pt_dim;
+
+        if(tile_idx < numPoints){
+            tile[tx][0] = originalPoints[index];
+            tile[tx][1] = originalPoints[index + 1];
+            tile[tx][2] = originalPoints[index + 2 ];
+        }else{
+            tile[tx][0] = 0.0;
+            tile[tx][1] = 0.0;
+            tile[tx][2] = 0.0;
+        }
+
+//      Assures that all threads have loaded the data into shared memory (with syncthreads)
+        __syncthreads();
+
+        if(idx < numPoints){ // for threads inside bounds do following processing
+            float3 shiftedPoint = make_float3(shiftedPoints[idx], shiftedPoints[idx + 1], shiftedPoints[idx + 2]);
+
+//      Process data (of current tile)
+            for(int j = 0; j < TILE_WIDTH; j++){
+                float3 originalPoint = make_float3(tile[j][0], tile[j][1], tile[j][2]); // from shared mem
+                float3 difference = shiftedPoint - originalPoint;
+                float squared_dist = dot(difference, difference);
+//                if(sqrt(squared_dist) <= bandwidth){
+                float weight = std::exp((-squared_dist) / (2 * powf(bandwidth, 2)));
+                new_pos += originalPoint * weight;
+                tot_weight += weight;
+//                }
+            }
+        }
+        __syncthreads();
+//       end of processing for tile t_ij
+    }
+    if(idx < numPoints){
+//        Store final value
+        new_pos /= tot_weight;
+        shiftedPoints[idx] = new_pos.x;
+        shiftedPoints[idx + 1] = new_pos.y;
+        shiftedPoints[idx + 2] = new_pos.z;
+    }
+
+}
+
+
 
 //// Tests
 Result test(bool tiling, const float bandwidth, std::string &points_filename, const int n_iterations, std::string &output_filename,
                      int verbose, bool save_output) {
 
+// prova versione (x1,y1,z1) dei punti
+//    std::vector<float> points = getPointsFromCsv_diffOrder(points_filename);
     std::vector<float> points = getPointsFromCsv(points_filename);
-    int num_points = points.size() / 3;
+    const int features = 3;
+    int num_points = points.size() / features;
 
     float elapsed_time = 0;
 //    Result initialization variables
@@ -150,8 +208,7 @@ Result test(bool tiling, const float bandwidth, std::string &points_filename, co
         dim3 num_blocks = dim3(ceil((float) num_points / BLOCK_DIM));
         dim3 num_threads = dim3(BLOCK_DIM);
         if (run_idx == 0)
-            printf("Grid : {%d, %d, %d} blocks. Blocks : {%d, %d, %d} threads.\n",
-               num_blocks.x, num_blocks.y, num_blocks.z, num_threads.x, num_threads.y, num_threads.z);
+            printf("Grid : %d blocks. Blocks : %d threads.\n", num_blocks.x, num_threads.x);
 
 //        Run mean shift - naive version (no tiling)
         if (not tiling){
@@ -175,8 +232,11 @@ Result test(bool tiling, const float bandwidth, std::string &points_filename, co
             std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
 
             for(int i=0; i < n_iterations; i++){
+
+//                TilingMeanShift_v2<<<num_blocks, num_threads>>>(shifted_pointer, orig_pointer, num_points, bandwidth, features);
                 TilingMeanShift<<<num_blocks, num_threads>>>(shifted_pointer, orig_pointer, num_points, bandwidth);
                 cudaDeviceSynchronize();
+
             }
             std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
 
@@ -188,7 +248,6 @@ Result test(bool tiling, const float bandwidth, std::string &points_filename, co
 
     float cuda_time = elapsed_time / N_runs;
     r.time = cuda_time;
-//    results_time.push_back(r);
 
     printf("Cuda elapsed time on %d iterations, with %d points: %f \n", n_iterations, num_points, cuda_time);
 
@@ -200,7 +259,7 @@ Result test(bool tiling, const float bandwidth, std::string &points_filename, co
 
 //    Save final points
     if (save_output){
-        std::cout << "output filename is: " << output_filename << '\n';
+//        std::cout << "output filename is: " << output_filename << '\n';
         savePointsToCsv(outputPoints, output_filename, num_points);
     }
 
@@ -226,7 +285,7 @@ int main(){
     std::string project_dir = p.substr(0, (p.substr(0, p.find_last_of("/")).find_last_of("/")));
     if (on_server)
         project_dir = "";
-    std::cout << "Project dir is: " << project_dir << '\n';
+//    std::cout << "Project dir is: " << project_dir << '\n';
 
 //  Dataset dir path
     std::string dataset_dir_path;
@@ -239,7 +298,7 @@ int main(){
 //  Values for mean shift algorithm
     float bandwidth = 2.;
     int num_features = 3;
-    bool tiling_cuda = true;
+//    bool tiling_cuda = true;
 //    Experiments time
     int n_iterations = 10;
 
@@ -249,45 +308,53 @@ int main(){
     std::string times_dir = "experiments/times";
 
     std::string results_time_filename;
-    if (not tiling_cuda)
-        if (on_server)
-            results_time_filename = times_dir + "/cuda_naive"  + ".csv";
+
+//    Cuda naive and cuda tiling tests (128 tile width)
+    bool tiling_experiments[2] = {false, true};
+    for (auto tiling_cuda : tiling_experiments){
+        if (not tiling_cuda)
+            if (on_server)
+                results_time_filename = times_dir + "/cuda_naive"  + ".csv";
+            else
+                results_time_filename = project_dir + "/" + times_dir + "/cuda_naive"  + ".csv";
         else
-            results_time_filename = project_dir + "/" + times_dir + "/cuda_naive"  + ".csv";
-    else
         if (on_server)
-            results_time_filename =  times_dir + "/cuda_tiling"  + ".csv";
+            results_time_filename =  times_dir + "/cuda_tiling_" + std::to_string(TILE_WIDTH)  + ".csv";
         else
-            results_time_filename = project_dir + "/" + times_dir + "/cuda_tiling"  + ".csv";
+            results_time_filename = project_dir + "/" + times_dir + "/cuda_tiling_" + std::to_string(TILE_WIDTH) + ".csv";
 
 
-//    Initialize vector to store time results
-    std::vector<Result> results_time;
+        //    Initialize vector to store time results
+        std::vector<Result> results_time;
 
-////   Iterate over different dataset dimensions
-    int dimensions [8] = {100, 1000, 10000, 100000, 1000000};
-//    int dimensions [8] = {100, 1000, 10000, 20000, 50000, 100000, 250000, 500000};
+        ////   Iterate over different dataset dimensions
+//        int dimensions [4] = {100, 500, 1000, 10000};
+        int dimensions [7] = {100, 500, 1000, 10000, 100000, 500000, 1000000};
+        //    int dimensions [8] = {100, 1000, 10000, 20000, 50000, 100000, 250000, 500000};
 
-    for (auto d : dimensions){
-        printf("Test MS with #points: %d \n", d);
-        std::string complete_fileName = dataset_dir_path + "/" + std::to_string(d) + ".csv";
-//        std::cout << "Dataset_dir_path: " << dataset_dir_path << '\n';
-        std::vector<float> points = getPointsFromCsv(complete_fileName);
-        int num_points = points.size() / num_features;
+        for (auto d : dimensions){
+            printf("Test MS with #points: %d \n", d);
+            std::string complete_fileName = dataset_dir_path + "/" + std::to_string(d) + ".csv";
+            //        std::cout << "Dataset_dir_path: " << dataset_dir_path << '\n';
+            std::vector<float> points = getPointsFromCsv(complete_fileName);
+            int num_points = points.size() / num_features;
 
-//        File to store mean shift results
-        std::string cuda_results_dir = project_dir + "/" + output_filename + std::to_string(num_points) + ".csv";
-//        std::cout << "results_time_filename: " << results_time_filename << '\n';
+            //        File to store mean shift results
+            std::string cuda_results_dir = project_dir + "/" + output_filename + std::to_string(num_points) + ".csv";
+            std::cout << "results_time_filename: " << results_time_filename << '\n';
 
-//       Experiments
-        Result r = test(tiling_cuda, bandwidth, complete_fileName, n_iterations, cuda_results_dir, 1, true);
-        results_time.push_back(r);
+            //       Experiments
+            Result r = test(tiling_cuda, bandwidth, complete_fileName, n_iterations, cuda_results_dir, 1, true);
+            results_time.push_back(r);
 
 
+        }
+
+        //    Save results times
+
+        saveResultsToCsv(results_time, results_time_filename);
     }
 
-    //    Save results times
-    saveResultsToCsv(results_time, results_time_filename);
 
 
 ////  Iterate over different tile width dimensions for tiling cuda

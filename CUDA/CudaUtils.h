@@ -47,8 +47,8 @@ inline __host__ __device__ float dot(float3 a, float3 b){
 }
 
 // Read points from CSV file
-
 std::vector<float> getPointsFromCsv(std::string& file_name){
+////  return vector of float like x1..xn y1..yn z1...zn
 //    Read points from CSV and store into vectors
 //    define x,y,z vectors with all values
     std::vector<float> x;
@@ -58,7 +58,6 @@ std::vector<float> getPointsFromCsv(std::string& file_name){
     std::string line;
 //    printf("line res: %s", std::getline(data, line));
     while (std::getline(data, line)){
-//        printf("line ! \n");
         std::stringstream lineStream(line);
         std::string cell;
         std::vector<float> point;
@@ -73,6 +72,31 @@ std::vector<float> getPointsFromCsv(std::string& file_name){
     std::vector<float> all_points = x;
     all_points.insert(all_points.end(), y.begin(), y.end());
     all_points.insert(all_points.end(), z.begin(), z.end());
+    return all_points;
+}
+
+// Read points from CSV file
+std::vector<float> getPointsFromCsv_diffOrder(std::string& file_name){
+////  return vector of float like x1,y1,z1,x2,y2,z2,....xn,yn,zn
+//    Read points from CSV and store into vectors
+//    define x,y,z vectors with all values
+//    std::vector<float> x;
+//    std::vector<float> y;
+//    std::vector<float> z;
+    std::vector<float> all_points;
+    std::ifstream data(file_name);
+    std::string line;
+//    printf("line res: %s", std::getline(data, line));
+    while (std::getline(data, line)){
+        std::stringstream lineStream(line);
+        std::string cell;
+        std::vector<float> point;
+        while (getline(lineStream, cell, ','))
+            point.push_back(stod(cell));
+        all_points.push_back(point[0]);
+        all_points.push_back(point[1]);
+        all_points.push_back(point[2]);
+    }
     return all_points;
 }
 

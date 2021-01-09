@@ -67,12 +67,12 @@ def color_clusters(shifted_csv, out_csv='experiments/original', threshold=1.5, d
 if __name__ == '__main__':
 
     # assign cluster to every original point based on mean shift resulting position
-    filename = '1000.csv'
+    filename = '100.csv'
     ms_versions = {0: 'seq', 1: 'openmp', 2: 'cuda'}
     ms_version = ms_versions[2]
     shifted_dir = 'experiments/ms'
     output_dir = 'experiments/original'
-    output_csv = 'dataset/c_1000.csv'
+    # output_csv = 'dataset/c_100.csv'
     dataset_dir = 'dataset/3d'
     color_clusters(os.path.join(shifted_dir, ms_version, filename), os.path.join(output_dir, filename), threshold=10, dataset_dir=dataset_dir)
     # plot3dData()
