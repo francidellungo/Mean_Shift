@@ -182,14 +182,15 @@ def plotMultipleSpeedUps(x, y_list, num_points, save_fig=False):
     # plt.xticks(np.arange(x[0], x[-1], step=(x[-1] - x[0]) / len(x)), x)
     plt.margins(0.08)
     for y_idx, y in enumerate(y_list):
-        plt.plot([i -1 for i in n_threads], y, label=str(dims[y_idx]))  # , alpha=0.7
+#        plt.plot([i -1 for i in n_threads], y, label=str(dims[y_idx]))  # , alpha=0.7
+        ax.plot([i -1 for i in n_threads], y, 'o-', label=str(dims[y_idx]))
 
     plt.legend(loc=1, bbox_to_anchor=(1,1))
 
     # ax.plot(np.arange(len(x)), y, 'o-')
 
-    ax.set(xlabel='Threads', ylabel='Speedup',
-           title=' {} points'.format(num_points))
+    ax.set(xlabel='Threads', ylabel='Speedup')
+           #, title=' {} points'.format(num_points))
     ax.grid()
     plt.ylim([0, x[-1]])
     # plt.xlim([0, x[-1]])
@@ -209,28 +210,28 @@ def plotMultipleSpeedUps(x, y_list, num_points, save_fig=False):
 
 """ Plot old and new points"""
 
-# original dataset
-num_points = 100
-filename = "dataset/tmp_data/c_{}.csv".format(num_points)
-
-cc = loadData(filename)
-plot3dData(cc)
-print(len(cc))
-
-
-# shifted data
-shifted_filename = "experiments/ms/cuda/{}.csv".format(num_points)
-newp = loadData(shifted_filename)
-plot3dData(newp)
-
-# original data with cluster id (--> color)
-# new_filename = "dataset/ms/cuda/1000.csv"
-
-new_filename = "experiments/original/{}.csv".format(num_points)
-newp = loadData(new_filename)
-plot3dData(newp)
-
-# generateDatasets(save_dataset=True)
+# # original dataset
+# num_points = 100
+# filename = "dataset/tmp_data/c_{}.csv".format(num_points)
+#
+# cc = loadData(filename)
+# plot3dData(cc)
+# print(len(cc))
+#
+#
+# # shifted data
+# shifted_filename = "experiments/ms/cuda/{}.csv".format(num_points)
+# newp = loadData(shifted_filename)
+# plot3dData(newp)
+#
+# # original data with cluster id (--> color)
+# # new_filename = "dataset/ms/cuda/1000.csv"
+#
+# new_filename = "experiments/original/{}.csv".format(num_points)
+# newp = loadData(new_filename)
+# plot3dData(newp)
+#
+# # generateDatasets(save_dataset=True)
 
 """ Plot 2d graph tile widths results"""
 # # dims = [8, 16, 32, 64, 128, 256, 512, 1024]
@@ -247,9 +248,10 @@ plot3dData(newp)
 
 """ Plot speedUp graphs"""
 num_points = 10000
-dims = [100, 500, 1000, 10000]
+dims = [100, 1000, 10000, 100000]
 n_threads = range(1, 9)
-filename = "experiments/times/seq_openMP_{}.csv".format(num_points)
+# filename = "experiments/times/seq_openMP_{}.csv".format(num_points)
+filename = "experiments/times/seq_openMP_100000_complete.csv"
 # filename = "experiments/times/seq_openMP{}.csv".format(num_points)
 data = loadData(filename)
 row_len = data[0].shape[0]  # row_len == 8
@@ -260,7 +262,7 @@ for idx in range(0, len(dims)):
     speed_ups = [time_res[0] / time for time in time_res]
     # speed_ups.pop(1)
     y_list.append(speed_ups)
-    plotSpeedUps(n_threads, speed_ups, dims[idx], save_fig=False)
+    plotSpeedUps(n_threads, speed_ups, dims[idx], save_fig=True)
 
 plotMultipleSpeedUps(n_threads, y_list, num_points, True)
 

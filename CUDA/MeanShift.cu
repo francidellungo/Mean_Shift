@@ -18,7 +18,6 @@
 
 #define N_runs 15 // same in Test.h for sequential and openMP implementations
 
-
 //tiling version
 #define TILE_WIDTH 128
 //int tile_widths [7] = {8, 16, 32, 64, 128, 256, 512, 1024};
@@ -310,7 +309,7 @@ int main(){
     std::string results_time_filename;
 
 //    Cuda naive and cuda tiling tests (128 tile width)
-    bool tiling_experiments[2] = {false, true};
+    bool tiling_experiments[1] = {false};
     for (auto tiling_cuda : tiling_experiments){
         if (not tiling_cuda)
             if (on_server)

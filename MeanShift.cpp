@@ -44,7 +44,8 @@ std::vector<Point> MeanShift::doMeanShift(const std::vector<Point> &points, cons
     float bandwidth = this->bandwidth;
 
     for(int i=0; i<this->max_iter; i++){
-#pragma omp parallel for default(none) shared(points, bandwidth, copied_points) schedule(static) num_threads(num_threads)
+//#pragma omp parallel for default(none) shared(points, bandwidth, copied_points) schedule(static) num_threads(num_threads)
+#pragma omp parallel for default(none) shared(points, bandwidth, copied_points) num_threads(num_threads)
 //      iterate over points
         for(int c=0; c< points.size(); c++){
             Point newPoint = updatePoint(copied_points[c], points);
