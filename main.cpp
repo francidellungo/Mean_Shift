@@ -148,7 +148,7 @@ int main(){
     std::vector<Result> results_time;
 
 //    Iterate over different dimensions
-    int dimensions [6] = {100, 500, 1000, 10000, 100000, 1000000};
+    int dimensions [5] = {100, 1000, 10000, 100000, 1000000};
 //    int dimensions [6] = {100, 500, 1000, 10000, 100000, 500000}; //, 1000000};
 //    int dimensions [3] = {100000, 500000, 1000000};
 
