@@ -309,7 +309,8 @@ int main(){
     std::string results_time_filename;
 
 //    Cuda naive and cuda tiling tests (128 tile width)
-    bool tiling_experiments[1] = {false};
+    bool tiling_experiments[1] = {true, false};
+
     for (auto tiling_cuda : tiling_experiments){
         if (not tiling_cuda)
             if (on_server)
