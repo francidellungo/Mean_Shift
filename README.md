@@ -80,5 +80,3 @@ and then run with:
 
 ## Authors
 This project was carried out in collaboration with [Matteo Petrone](https://github.com/matpetrone) for the Parallel Computing exam.
-
-## WORK IN PROGRESS...
